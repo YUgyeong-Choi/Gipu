@@ -11,7 +11,7 @@ class StartActivity : AppCompatActivity(){
         setContentView(R.layout.start_activity)
 
         Handler().postDelayed({
-            val intent = Intent(this, RoomListActivity::class.java)
+            val intent = Intent(this, InfoListActivity::class.java)
             startActivity(intent)
             finish() //이전 액티비티 종료
         }, 3000)

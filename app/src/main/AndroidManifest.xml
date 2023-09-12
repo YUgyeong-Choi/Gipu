@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".RoomListActivity"/>
+        <activity android:name=".InfoListActivity"/>
 
     </application>
 
