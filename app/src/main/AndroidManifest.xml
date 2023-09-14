@@ -28,6 +28,7 @@
         <activity android:name=".InfoListActivity"/>
         <activity android:name=".WritingActivity"/>
 
+
     </application>
 
 </manifest>
