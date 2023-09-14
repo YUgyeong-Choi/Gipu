@@ -5,6 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/info_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="게시물"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/topDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <View
         android:id="@+id/topDivider"
         android:layout_width="match_parent"
@@ -55,7 +67,7 @@
         app:srcCompat="@drawable/searcgicon" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/info_setting"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="20dp"
@@ -72,7 +84,18 @@
         android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="-30dp" />
+
+    <ImageView
+        android:id="@+id/info_writing"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/info_setting"
+        app:layout_constraintEnd_toStartOf="@+id/info_setting"
+        app:layout_constraintTop_toTopOf="@+id/info_setting"
+        app:srcCompat="@drawable/pencil" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
