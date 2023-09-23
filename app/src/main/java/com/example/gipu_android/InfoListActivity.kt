@@ -30,6 +30,12 @@ class InfoListActivity : AppCompatActivity(){
             finish()
         }
 
+        binding.infolistSearch.setOnClickListener {
+            val intent = Intent(this, FoodbankListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
 
         val info_rv = findViewById<RecyclerView>(R.id.info_recyclerView)
         info_rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

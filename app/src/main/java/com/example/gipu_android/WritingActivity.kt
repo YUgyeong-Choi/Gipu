@@ -106,7 +106,7 @@ class WritingActivity: AppCompatActivity() {
         binding.camera.setOnClickListener {
             var popupMenu = PopupMenu(applicationContext, it)
 
-            menuInflater?.inflate(R.menu.camera_menu, popupMenu.menu)
+            menuInflater.inflate(R.menu.camera_menu, popupMenu.menu)
             popupMenu.show()
             popupMenu.setOnMenuItemClickListener {
                 when (it.itemId) {

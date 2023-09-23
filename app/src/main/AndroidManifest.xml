@@ -27,6 +27,7 @@
 
         <activity android:name=".InfoListActivity"/>
         <activity android:name=".WritingActivity"/>
+        <activity android:name=".FoodbankListActivity"/>
 
 
     </application>
