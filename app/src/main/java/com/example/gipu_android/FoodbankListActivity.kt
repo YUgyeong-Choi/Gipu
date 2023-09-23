@@ -26,53 +26,63 @@ class FoodbankListActivity : AppCompatActivity() {
             finish()
         }
 
-        val FoodbankList = arrayListOf(
-            FoodBankData("진주", "유경마켓", "010-1234-5678", "경상남도 진주시", "비밀","숙박","유경교"),
-            FoodBankData("진주", "유경마켓", "010-1234-5678", "경상남도 진주시", "비밀","숙박","유경교"),
-            FoodBankData("진주", "유경마켓", "010-1234-5678", "경상남도 진주시", "비밀","숙박","유경교"),
-            FoodBankData("진주", "유경마켓", "010-1234-5678", "경상남도 진주시", "비밀","숙박","유경교"),
-            FoodBankData("진주", "유경마켓", "010-1234-5678", "경상남도 진주시", "비밀","숙박","유경교"),
-            FoodBankData("진주", "유경마켓", "010-1234-5678", "경상남도 진주시", "비밀","숙박","유경교")
+        var FoodbankList = arrayListOf<FoodBankData>()
+
+        val service = CenterInfoImpl.service_ct_tab
+        val call = service.requestList(
+            serviceKey = SERVICEKEY,
+            stdrYm = "202208",
+            numOfRows = "10000",
+            pageNo = "1",
+            dataType = "json",
+            spctrStscd = "1",
+            unitySignguCd = "16020000"
         )
 
-        val foodbank_rv = findViewById<RecyclerView>(R.id.foodbank_recyclerView)
-        foodbank_rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        foodbank_rv.setHasFixedSize(true)
-        foodbank_rv.adapter = FoodbankListAdapter(FoodbankList)
+        call.enqueue(object : Callback<CenterResponse> {
+            override fun onResponse(
+                call: Call<CenterResponse>,
+                response: Response<CenterResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val apiResponse = response.body()
+                    Log.d("response", response.toString())
+                    if (apiResponse != null) {
+                        Log.d("apiResponse", apiResponse.toString())
 
-//        val service = CenterInfoImpl.service_ct_tab
-//        val call = service.requestList(
-//            serviceKey = SERVICEKEY,
-//            stdrYm = "202208",
-//            numOfRows = "10000",
-//            pageNo = "1",
-//            dataType = "json",
-//            spctrStscd = "1",
-//            unitySignguCd = "16020000"
-//        )
-//
-//        call.enqueue(object : Callback<CenterResponse> {
-//            override fun onResponse(
-//                call: Call<CenterResponse>,
-//                response: Response<CenterResponse>
-//            ) {
-//                if (response.isSuccessful) {
-//                    val apiResponse = response.body()
-//                    Log.d("response", response.toString())
-//                    if (apiResponse != null) {
-//                        Log.d("apiResponse", apiResponse.toString())
-//                    }
-//
-//                }else {
-//                    // 서버 응답 실패 처리
-//                    Log.e("Response", "Response is not successful. Code: ${response.headers()}")
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<CenterResponse>, t: Throwable) {
-//                // 네트워크 오류 처리
-//                Log.e("Response", "Network error: ${t.message}")
-//            }
-//        })
+                        val foodbankInfos = apiResponse.response.body.items
+
+                        for (foodbankInfo in foodbankInfos){
+                            var foodbank = FoodBankData(
+                                region = regionData.data[foodbankInfo.unitySignguCd].toString(),
+                                name = foodbankInfo.spctrCd,
+                                telephone = foodbankInfo.spctrTelno,
+                                location = foodbankInfo.spctrAdres,
+                                locationDetail = foodbankInfo.spctrDetailAdres,
+                                what = "숙박",
+                                who = foodbankInfo.operMbySclasCd,
+                            )
+                            FoodbankList.add(foodbank)
+                        }
+
+                        val foodbank_rv = findViewById<RecyclerView>(R.id.foodbank_recyclerView)
+                        foodbank_rv.layoutManager = LinearLayoutManager(this@FoodbankListActivity, LinearLayoutManager.VERTICAL, false)
+                        foodbank_rv.setHasFixedSize(true)
+                        foodbank_rv.adapter = FoodbankListAdapter(FoodbankList)
+
+                    }
+
+                }else {
+                    // 서버 응답 실패 처리
+                    Log.e("Response", "Response is not successful. Code: ${response.headers()}")
+                }
+            }
+
+            override fun onFailure(call: Call<CenterResponse>, t: Throwable) {
+                // 네트워크 오류 처리
+                Log.e("Response", "Network error: ${t.message}")
+            }
+        })
+
     }
 }
