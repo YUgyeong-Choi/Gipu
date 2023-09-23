@@ -9,14 +9,6 @@ import com.example.gipu_android.databinding.InfolistActivityBinding
 
 class InfoListActivity : AppCompatActivity(){
 
-    val InfoList = arrayListOf(
-        InfoData("카테고리입니다", "제목입니다", "본문입니다", "위치입니다"),
-        InfoData("카테고리입니다", "제목입니다", "본문입니다", "위치입니다"),
-        InfoData("카테고리입니다", "제목입니다", "본문입니다", "위치입니다"),
-        InfoData("카테고리입니다", "제목입니다", "본문입니다", "위치입니다"),
-        InfoData("카테고리입니다", "제목입니다", "본문입니다", "위치입니다")
-    )
-
     private val binding by lazy{
         InfolistActivityBinding.inflate(layoutInflater)
     }
@@ -36,6 +28,13 @@ class InfoListActivity : AppCompatActivity(){
             finish()
         }
 
+        val InfoList = arrayListOf(
+            InfoData("카테고리입니다", "제목입니다", "본문입니다", "위치입니다"),
+            InfoData("카테고리입니다", "제목입니다", "본문입니다", "위치입니다"),
+            InfoData("카테고리입니다", "제목입니다", "본문입니다", "위치입니다"),
+            InfoData("카테고리입니다", "제목입니다", "본문입니다", "위치입니다"),
+            InfoData("카테고리입니다", "제목입니다", "본문입니다", "위치입니다")
+        )
 
         val info_rv = findViewById<RecyclerView>(R.id.info_recyclerView)
         info_rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
