@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="200dp"
+    android:background="@drawable/background_rounded"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    >
+
+        <TextView
+            android:id="@+id/detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="35dp"
+            android:text="상세 정보"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detail_whatTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="시설단체 분류"
+            app:layout_constraintStart_toStartOf="@+id/detail_title"
+            app:layout_constraintTop_toBottomOf="@+id/detail_title" />
+
+        <TextView
+            android:id="@+id/detail_what"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="2dp"
+            android:text="시설"
+            app:layout_constraintBottom_toBottomOf="@+id/detail_whatTitle"
+            app:layout_constraintStart_toEndOf="@+id/detail_whatTitle"
+            app:layout_constraintTop_toTopOf="@+id/detail_whatTitle" />
+
+        <TextView
+            android:id="@+id/detail_useTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="이용자 수"
+            app:layout_constraintStart_toStartOf="@+id/detail_whatTitle"
+            app:layout_constraintTop_toBottomOf="@+id/detail_whatTitle" />
+
+        <TextView
+            android:id="@+id/detail_use"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/detail_useTitle"
+            app:layout_constraintStart_toEndOf="@+id/detail_useTitle"
+            app:layout_constraintTop_toTopOf="@+id/detail_useTitle" />
+
+        <TextView
+            android:id="@+id/detail_whoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="운영주체 분류"
+            app:layout_constraintStart_toStartOf="@+id/detail_useTitle"
+            app:layout_constraintTop_toBottomOf="@+id/detail_useTitle" />
+
+        <TextView
+            android:id="@+id/detail_who"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="운영"
+            app:layout_constraintBottom_toBottomOf="@+id/detail_whoTitle"
+            app:layout_constraintStart_toEndOf="@+id/detail_whoTitle"
+            app:layout_constraintTop_toTopOf="@+id/detail_whoTitle" />
+
+        <TextView
+            android:id="@+id/detail_subInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="2022년 12월 데이터"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

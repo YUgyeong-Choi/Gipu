@@ -1,6 +1,7 @@
 package com.example.gipu_android
 
 data class RegionData(val data: Map<String, String>)
+data class CenterNameData(val data: Map<String, String>)
 
 val regionData = RegionData(
     mapOf(
@@ -23,5 +24,37 @@ val regionData = RegionData(
         "16060000" to "밀양시",
         "16070000" to "거제시",
         "16080000" to "양산시"
+    )
+)
+
+val centerNameData = CenterNameData(
+    mapOf(
+        "S19201" to "경남광역푸드뱅크",
+        "S19301" to "마산푸드뱅크",
+        "S19401" to "진주시푸드뱅크",
+        "S19501" to "진해푸드뱅크",
+        "S19601" to "통영시푸드뱅크",
+        "S19701" to "사천시푸드뱅크",
+        "S19801" to "김해시푸드뱅크",
+        "S19901" to "밀양시푸드뱅크",
+        "S20001" to "거제시푸드뱅크",
+        "S20101" to "양산시푸드뱅크",
+        "S20201" to "의령군푸드뱅크",
+        "S20301" to "함안군푸드뱅크",
+        "S20401" to "창녕군푸드뱅크",
+        "S20501" to "고성군푸드뱅크",
+        "S20601" to "남해군푸드뱅크",
+        "S20701" to "하동군푸드뱅크",
+        "S20801" to "산청군푸드뱅크",
+        "S20901" to "함양군푸드뱅크",
+        "S21101" to "합천군푸드뱅크",
+        "S26101" to "창원시기초푸드뱅크",
+        "S39101" to "김해시푸드마켓",
+        "S39801" to "통영나누미푸드마켓",
+        "S39901" to "진주푸드마켓",
+        "S41601" to "창원시희망푸드마켓",
+        "S49201" to "거창푸드뱅크",
+        "S63701" to "산청군푸드뱅크",
+        "S66701" to "김해시나누미푸드뱅크"
     )
 )

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -96,45 +97,27 @@
                 app:layout_constraintStart_toEndOf="@+id/center_detail_locationtitle"
                 app:layout_constraintTop_toTopOf="@+id/center_detail_locationtitle" />
 
-            <TextView
-                android:id="@+id/center_what"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="센터 분류"
-                app:layout_constraintStart_toStartOf="@+id/center_detail_locationtitle"
-                app:layout_constraintTop_toBottomOf="@+id/center_detail_locationtitle" />
-
-            <TextView
-                android:id="@+id/center_who"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="센터 운영주체"
-                app:layout_constraintStart_toStartOf="@+id/center_what"
-                app:layout_constraintTop_toBottomOf="@+id/center_what" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
-                android:orientation="horizontal"
                 android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@+id/center_who">
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/center_detail_locationtitle">
 
                 <Button
-                    android:id="@+id/center_usecount"
+                    android:id="@+id/center_detailInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:text="이용자 수 보기" />
+                    android:text="상세 정보 보기"/>
 
                 <Button
                     android:id="@+id/center_wishproduct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="선호 물품 보기" />
+                    android:text="선호 물품 보기"/>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

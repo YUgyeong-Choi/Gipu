@@ -1,6 +1,8 @@
 package com.example.gipu_android
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gipu_android.databinding.FoodbanklistActivityBinding
 import com.example.gipu_android.databinding.InfolistActivityBinding
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,12 +29,13 @@ class FoodbankListActivity : AppCompatActivity() {
             finish()
         }
 
+
         var FoodbankList = arrayListOf<FoodBankData>()
 
         val service = CenterInfoImpl.service_ct_tab
         val call = service.requestList(
             serviceKey = SERVICEKEY,
-            stdrYm = "202208",
+            stdrYm = "202212",
             numOfRows = "10000",
             pageNo = "1",
             dataType = "json",
@@ -52,15 +56,15 @@ class FoodbankListActivity : AppCompatActivity() {
 
                         val foodbankInfos = apiResponse.response.body.items
 
-                        for (foodbankInfo in foodbankInfos){
+                        for (foodbankInfo in foodbankInfos) {
                             var foodbank = FoodBankData(
-                                region = regionData.data[foodbankInfo.unitySignguCd].toString(),
+                                region = foodbankInfo.unitySignguCd,
                                 name = foodbankInfo.spctrCd,
                                 telephone = foodbankInfo.spctrTelno,
                                 location = foodbankInfo.spctrAdres,
                                 locationDetail = foodbankInfo.spctrDetailAdres,
-                                what = "숙박",
-                                who = foodbankInfo.operMbySclasCd,
+                                who = foodbankInfo.operMbyLclasCd,
+                                useCount = foodbankInfo.userCo
                             )
                             FoodbankList.add(foodbank)
                         }

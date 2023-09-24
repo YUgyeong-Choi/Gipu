@@ -1,9 +1,13 @@
 package com.example.gipu_android
 
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.text.TextWatcher
 import android.text.Editable
+import android.util.Base64
+import android.util.Log
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +16,8 @@ import com.example.gipu_android.databinding.WritingActivityBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 class WritingActivity: AppCompatActivity() {
     private val binding by lazy{
@@ -95,8 +101,8 @@ class WritingActivity: AppCompatActivity() {
                 "title" to title,
                 "content" to content
             )
-
-            db.collection("게시물").document("의진이 휴대폰").set(testData)
+            val keyHash = getHashKey()
+            db.collection("게시물").document(keyHash.toString()).set(testData)
 
             val intent = Intent(this, InfoListActivity::class.java)
             startActivity(intent)
@@ -123,7 +129,26 @@ class WritingActivity: AppCompatActivity() {
                 }
             }
         }
+    }
 
-
+    private fun getHashKey():String? {
+        var packageInfo: PackageInfo? = null
+        try {
+            packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+        if (packageInfo == null) Log.e("KeyHash", "KeyHash:null")
+        for (signature in packageInfo!!.signatures) {
+            try {
+                val md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                Log.d("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT))
+                return Base64.encodeToString(md.digest(), Base64.DEFAULT)
+            } catch (e: NoSuchAlgorithmException) {
+                Log.e("KeyHash", "Unable to get MessageDigest. signature=$signature", e)
+            }
+        }
+        return null
     }
 }

@@ -1,8 +1,10 @@
 package com.example.gipu_android
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -13,8 +15,20 @@ class FoodbankListAdapter(val FoodbankList: ArrayList<FoodBankData>): RecyclerVi
         val telephone = itemView.findViewById<TextView>(R.id.center_num)
         val location = itemView.findViewById<TextView>(R.id.center_location)
         val detail_location = itemView.findViewById<TextView>(R.id.center_detail_location)
-        val what = itemView.findViewById<TextView>(R.id.center_what)
-        val who = itemView.findViewById<TextView>(R.id.center_who)
+        val centerDetailBtn = itemView.findViewById<Button>(R.id.center_detailInfo)
+        val centerWishProductBtn = itemView.findViewById<Button>(R.id.center_wishproduct)
+
+        init {
+            centerDetailBtn.setOnClickListener {
+                val pushData = FoodbankList[adapterPosition]
+                val simpleDialog = FoodbankDetailActivity(pushData, itemView.context)
+                simpleDialog.show()
+            }
+            centerWishProductBtn.setOnClickListener {
+                val intent = Intent(itemView.context, FoodbankDetailActivity::class.java)
+                itemView.context.startActivity(intent)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodbankViewHolder {
@@ -23,13 +37,11 @@ class FoodbankListAdapter(val FoodbankList: ArrayList<FoodBankData>): RecyclerVi
     }
 
     override fun onBindViewHolder(holder: FoodbankViewHolder, position: Int) {
-        holder.region.text = FoodbankList[position].region
-        holder.name.text = FoodbankList[position].name
+        holder.region.text = regionData.data[FoodbankList[position].region]
+        holder.name.text = centerNameData.data[FoodbankList[position].name]
         holder.telephone.text = FoodbankList[position].telephone
         holder.location.text = FoodbankList[position].location
         holder.detail_location.text = FoodbankList[position].locationDetail
-        holder.what.text = FoodbankList[position].what
-        holder.who.text = FoodbankList[position].who
     }
 
     override fun getItemCount(): Int {

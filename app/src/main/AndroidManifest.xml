@@ -14,12 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GipuAndroid"
         tools:targetApi="31"
-        android:usesCleartextTraffic="true">>
-
+        android:usesCleartextTraffic="true">
 
         <activity
             android:name=".StartActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -29,6 +29,7 @@
         <activity android:name=".InfoListActivity"/>
         <activity android:name=".WritingActivity"/>
         <activity android:name=".FoodbankListActivity"/>
+        <activity android:name=".FoodbankDetailActivity"/>
 
 
     </application>

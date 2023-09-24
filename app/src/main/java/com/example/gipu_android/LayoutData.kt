@@ -1,5 +1,7 @@
 package com.example.gipu_android
 
+import java.io.Serializable
+
 data class InfoData(
     val category : String,
     val title : String,
@@ -13,6 +15,6 @@ data class FoodBankData(
     val telephone : String,
     val location : String,
     val locationDetail : String,
-    val what : String,
-    val who : String
+    val who : String,
+    val useCount : String
 )
