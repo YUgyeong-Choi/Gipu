@@ -103,6 +103,7 @@ class WritingActivity: AppCompatActivity() {
             )
             val keyHash = getHashKey()
             db.collection("게시물").document(keyHash.toString()).set(testData)
+            Log.d("해시키", keyHash.toString())
 
             val intent = Intent(this, InfoListActivity::class.java)
             startActivity(intent)

@@ -5,8 +5,7 @@ import java.io.Serializable
 data class InfoData(
     val category : String,
     val title : String,
-    val content : String,
-    val location : String
+    val content : String
 )
 
 data class FoodBankData(
