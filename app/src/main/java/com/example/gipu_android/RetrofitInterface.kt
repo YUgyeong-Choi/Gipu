@@ -17,3 +17,26 @@ interface CenterInfoInterface{
         @Query("unitySignguCd") unitySignguCd: String
     ): Call<CenterResponse>
 }
+
+interface FcltyGrpInfoInterface{
+    @GET("getFcltyGrpInfo")
+    fun requestList(
+        @Query("serviceKey") serviceKey: String,
+        @Query("stdrYm") stdrYm: String,
+        @Query("numOfRows") numOfRows: String,
+        @Query("pageNo") pageNo: String,
+        @Query("dataType") dataType: String,
+        @Query("spctrCd") spctrCd: String
+    ): Call<fcltyGrpResponse>
+}
+
+interface PreferInfoInterface{
+    @GET("getPreferInfo")
+    fun requestList(
+        @Query("serviceKey") serviceKey: String,
+        @Query("numOfRows") numOfRows: String,
+        @Query("pageNo") pageNo: String,
+        @Query("dataType") dataType: String,
+        @Query("spctrCd") spctrCd: String
+    ): Call<PreferResponse>
+}

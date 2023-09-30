@@ -1,6 +1,5 @@
 package com.example.gipu_android
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,8 +24,9 @@ class FoodbankListAdapter(val FoodbankList: ArrayList<FoodBankData>): RecyclerVi
                 simpleDialog.show()
             }
             centerWishProductBtn.setOnClickListener {
-                val intent = Intent(itemView.context, FoodbankDetailActivity::class.java)
-                itemView.context.startActivity(intent)
+                val pushData = FoodbankList[adapterPosition]
+                val simpleDialog = FoodbankPreferActivity(pushData, itemView.context)
+                simpleDialog.show()
             }
         }
     }

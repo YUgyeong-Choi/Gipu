@@ -1,28 +1,29 @@
 package com.example.gipu_android
 
-data class CenterResponse(
-    val response: ResponseBody
-)
-
-data class ResponseBody(
-    val header: Header,
-    val body: Body
-)
-
 data class Header(
     val resultCode: String,
     val resultMsg: String
 )
 
-data class Body(
+// 센터 정보 데이터 클래스
+data class CenterResponse(
+    val response: CenterResponseBody
+)
+
+data class CenterResponseBody(
+    val header: Header,
+    val body: CenterBody
+)
+
+data class CenterBody(
     val dataType: String,
-    val items: List<Item>,
+    val items: List<CenterItem>,
     val pageNo: Int,
     val numOfRows: Int,
     val totalCount: Int
 )
 
-data class Item(
+data class CenterItem(
     val stdrYm: String,
     val areaCd: String,
     val unitySignguCd: String,
@@ -44,5 +45,57 @@ data class Item(
     val userCo: String
 )
 
+// 이용 시설 단체 데이터 클래스
+data class fcltyGrpResponse(
+    val response : fcltyGrpResonseBody
+)
 
+data class fcltyGrpResonseBody(
+    val header: Header,
+    val body: fcltyGrpBody
+)
 
+data class fcltyGrpBody(
+    val dataType: String,
+    val items: List<fcltyGrpItem>,
+    val pageNo: Int,
+    val numOfRows: Int,
+    val totalCount: Int
+)
+
+data class fcltyGrpItem(
+    val stdrYm: String,
+    val areaCd: String,
+    val unitySignguCd: String,
+    val spctrCd: String,
+    val fcltySeNm: String,
+    val fcltyGrpClscd: String,
+    val useAmt: String,
+    val useCo: String,
+    val fcltyGrpCo: String
+)
+
+// 선호 물품 데이터 클래스
+data class PreferResponse(
+    val response: PreferResponseBody
+)
+
+data class PreferResponseBody(
+    val header: Header,
+    val body: PreferBody
+)
+
+data class PreferBody(
+    val dataType: String,
+    val items: List<PreferItem>,
+    val pageNo: Int,
+    val numOfRows: Int,
+    val totalCount: Int
+)
+data class PreferItem(
+    val areaCd: String,
+    val unitySignguCd: String,
+    val spctrCd: String,
+    val preferCnttgClscd: String,
+    val holdQy: String
+)

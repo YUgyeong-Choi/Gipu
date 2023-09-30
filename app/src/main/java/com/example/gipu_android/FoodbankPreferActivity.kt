@@ -7,16 +7,16 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FoodbankDetailActivity(val getData : FoodBankData, private val context: Context) {
+class FoodbankPreferActivity(val getData : FoodBankData, private val context: Context) {
 
     fun show() {
         val builder = AlertDialog.Builder(context)
 
         // 다이얼로그의 제목 설정
-        builder.setTitle("상세 정보")
+        builder.setTitle("선호 물품")
 
         // 다이얼로그의 내용 설정
-        getFcltyGrpClscd(getData.name) { fcltydict ->
+        getPreferInfo(getData.name) { fcltydict ->
             val message = buildMessage(fcltydict)
             builder.setMessage(message)
 
@@ -31,39 +31,32 @@ class FoodbankDetailActivity(val getData : FoodBankData, private val context: Co
         }
     }
 
-    private fun buildMessage(fcltydict : MutableMap<String, String>): String {
+    private fun buildMessage(preferdict : MutableMap<String, String>): String {
         val stringBuilder = StringBuilder()
-        val useCount_word = "전체 이용자 수 : " + getData.useCount +"\n\n"
-        val who = "운영주체 분류 :  " + organizationData.data[getData.who] +"\n\n"
-        val whatCenter_word = "시설단체 및 이용건수\n"
-        stringBuilder.append(useCount_word)
-        stringBuilder.append(who)
-        stringBuilder.append(whatCenter_word)
 
-        for ((key, value) in fcltydict) {
-            stringBuilder.append("시설 유형 : " + fcltyGrpData.data[key]+"\t\t"+ "이용건수: " + value+"\n")
+        for ((key, value) in preferdict) {
+            stringBuilder.append("물품 : " + preferData.data[key]+"\t\t"+ "보유 수량: " + value+"\n")
         }
 
         return stringBuilder.toString()
     }
 
-    private fun getFcltyGrpClscd(name : String, callback: (MutableMap<String, String>) -> Unit) {
-        val service = FcltyGrpInfoImpl.service_ct_tab
+    private fun getPreferInfo(name : String, callback: (MutableMap<String, String>) -> Unit) {
+        val service = PreferInfoImpl.service_ct_tab
         val call = service.requestList(
             serviceKey = SERVICEKEY,
-            stdrYm = "202212",
             numOfRows = "10000",
             pageNo = "1",
             dataType = "json",
             spctrCd = name,
         )
 
-        val fcltydict: MutableMap<String, String> = mutableMapOf()
+        val preferdict: MutableMap<String, String> = mutableMapOf()
 
-        call.enqueue(object : Callback<fcltyGrpResponse> {
+        call.enqueue(object : Callback<PreferResponse> {
             override fun onResponse(
-                call: Call<fcltyGrpResponse>,
-                response: Response<fcltyGrpResponse>
+                call: Call<PreferResponse>,
+                response: Response<PreferResponse>
             ){
                 if (response.isSuccessful){
                     val apiResponse = response.body()
@@ -71,27 +64,22 @@ class FoodbankDetailActivity(val getData : FoodBankData, private val context: Co
                     if (apiResponse != null){
                         Log.d("apiResponse", apiResponse.toString())
 
-                        val fcltyGrpInfos = apiResponse.response.body.items
+                        val preferInfos = apiResponse.response.body.items
 
-                        for (fcltyGrpinfo in fcltyGrpInfos){
-                            fcltydict[fcltyGrpinfo.fcltyGrpClscd] = fcltyGrpinfo.useCo
+                        for (preferInfo in preferInfos){
+                            preferdict[preferInfo.preferCnttgClscd] = preferInfo.holdQy
                         }
-                        callback(fcltydict)
+                        callback(preferdict)
                     }
                 }else{
                     // 서버 응답 실패 처리
                     Log.e("Response", "Response is not successful. Code: ${response.headers()}")
                 }
             }
-            override fun onFailure(call: Call<fcltyGrpResponse>, t: Throwable) {
+            override fun onFailure(call: Call<PreferResponse>, t: Throwable) {
                 // 네트워크 오류 처리
                 Log.e("Response", "Network error: ${t.message}")
             }
         })
     }
 }
-
-
-
-
-

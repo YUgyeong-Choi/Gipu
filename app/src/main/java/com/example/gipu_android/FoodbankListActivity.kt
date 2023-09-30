@@ -63,7 +63,7 @@ class FoodbankListActivity : AppCompatActivity() {
                                 telephone = foodbankInfo.spctrTelno,
                                 location = foodbankInfo.spctrAdres,
                                 locationDetail = foodbankInfo.spctrDetailAdres,
-                                who = foodbankInfo.operMbyLclasCd,
+                                who = foodbankInfo.operMbySclasCd,
                                 useCount = foodbankInfo.userCo
                             )
                             FoodbankList.add(foodbank)
