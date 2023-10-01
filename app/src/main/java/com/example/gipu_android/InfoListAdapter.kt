@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 //infoList를 InfoData의 리스트 형태로 받고, 리사이클러뷰 선언을 해줌
-class InfoListAdapter(val infoList: ArrayList<InfoData>):RecyclerView.Adapter<InfoListAdapter.InfoViewHolder>() {
+class InfoListAdapter(private val infoList: MutableList<InfoData>):RecyclerView.Adapter<InfoListAdapter.InfoViewHolder>() {
     //2. inner class로 info_item.xml 레이아웃의 카테고리, 제목, 본문 변수를 가지고 옴
     inner class InfoViewHolder(itemView : View):RecyclerView.ViewHolder(itemView){
         val info_category = itemView.findViewById<TextView>(R.id.item_category)
