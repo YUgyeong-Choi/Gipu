@@ -21,7 +21,7 @@
         android:id="@+id/infotop_divider"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="1dp"
         android:background="#4682B4"
         app:layout_constraintBottom_toTopOf="@+id/info_recyclerView"
         tools:layout_editor_absoluteX="0dp" />
@@ -84,7 +84,6 @@
         android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         tools:layout_editor_absoluteX="-30dp" />
 
     <ImageView

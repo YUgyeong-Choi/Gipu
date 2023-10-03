@@ -29,18 +29,32 @@ class FoodbankListActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.regionSettingbtn.setOnClickListener {
+            val intent = Intent(this, RegionSettingActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        val selectedText = intent.getStringExtra("selectedText")
+        var selectedKey: String = "16010004"
+        for ((key, value) in regionData.data) {
+            if (value == selectedText) {
+                selectedKey = key
+                break
+            }
+        }
 
         var FoodbankList = arrayListOf<FoodBankData>()
 
         val service = CenterInfoImpl.service_ct_tab
         val call = service.requestList(
             serviceKey = SERVICEKEY,
-            stdrYm = "202212",
+            stdrYm = "202202",
             numOfRows = "10000",
             pageNo = "1",
             dataType = "json",
             spctrStscd = "1",
-            unitySignguCd = "16020000"
+            unitySignguCd = selectedKey
         )
 
         call.enqueue(object : Callback<CenterResponse> {

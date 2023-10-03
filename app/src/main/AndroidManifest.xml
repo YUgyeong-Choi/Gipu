@@ -30,7 +30,7 @@
         <activity android:name=".WritingActivity"/>
         <activity android:name=".FoodbankListActivity"/>
         <activity android:name=".FoodbankDetailActivity"/>
-
+        <activity android:name=".RegionSettingActivity"/>
 
     </application>
 
