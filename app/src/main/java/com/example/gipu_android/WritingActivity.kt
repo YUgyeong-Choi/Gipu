@@ -92,23 +92,8 @@ class WritingActivity: AppCompatActivity() {
                     // 텍스트 변경 후에 수행할 작업
                 }
             })
-
         }
 
-        binding.writingFinish.setOnClickListener {
-            val db = Firebase.firestore
-            val testData = hashMapOf(
-                "title" to title,
-                "content" to content
-            )
-            val keyHash = getHashKey()
-            db.collection("게시물").document(keyHash.toString()).set(testData)
-            Log.d("해시키", keyHash.toString())
-
-            val intent = Intent(this, InfoListActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
 
         binding.camera.setOnClickListener {
             var popupMenu = PopupMenu(applicationContext, it)
@@ -128,6 +113,45 @@ class WritingActivity: AppCompatActivity() {
                         return@setOnMenuItemClickListener false
                     }
                 }
+            }
+        }
+
+        var category = "null"
+
+        binding.writingGive.setOnClickListener {
+            binding.writingGive.setBackgroundResource(R.drawable.background_category)
+            binding.writingGet.setBackgroundResource(R.drawable.background_gray)
+            category = "기부 주기"
+        }
+
+        binding.writingGet.setOnClickListener {
+            binding.writingGet.setBackgroundResource(R.drawable.background_category)
+            binding.writingGive.setBackgroundResource(R.drawable.background_gray)
+            category = "기부 받기"
+        }
+
+        binding.writingFinish.setOnClickListener {
+            if(category == "null"){
+                val toast = Toast.makeText(
+                    this@WritingActivity,
+                    "기부 종류를 설정해주세요",
+                    Toast.LENGTH_SHORT
+                )
+                toast.show()
+            }else{
+                val db = Firebase.firestore
+                val testData = hashMapOf(
+                    "title" to title,
+                    "content" to content,
+                    "category" to category
+                )
+                val keyHash = getHashKey()
+                db.collection("게시물").document("아이디").set(testData)
+                //Log.d("해시키", keyHash.toString())
+
+                val intent = Intent(this, InfoListActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
     }

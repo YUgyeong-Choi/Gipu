@@ -15,11 +15,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 
 class InfoListActivity : AppCompatActivity(){
-
-    //레이아웃의 infolist_activity를 사용하겠다
-//    private val binding by lazy{
-//        InfolistActivityBinding.inflate(layoutInflater)
-//    }
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.infolist_activity) //레이아웃 실행
@@ -41,19 +36,7 @@ class InfoListActivity : AppCompatActivity(){
             finish()
         }
 
-        //InfoList는 InfoData형태가 여러개 인 리스트
-        //InfoData는 LayoutData.kt에서 확인할 수 있음
-//        val InfoList = arrayListOf(
-//            InfoData("카테고리입니다", "제목입니다", "본문입니다"),
-//            InfoData("카테고리입니다", "제목입니다", "본문입니다"),
-//            InfoData("카테고리입니다", "제목입니다", "본문입니다"),
-//            InfoData("카테고리입니다", "제목입니다", "본문입니다"),
-//            InfoData("카테고리입니다", "제목입니다", "본문입니다")
-//        )
 
-        //데이터 베이스에서 값 가지고 오는 코드 ^^ S2
-        //주석처리된거 다 드래그앤 드랍하고 ctrl + / 하면 주석 풀림
-        //Logcat을 보면 어떻게 출력되는 지 볼 수 있음
         val db = FirebaseFirestore.getInstance()
         db.collection("게시물")
             .get()
@@ -63,7 +46,7 @@ class InfoListActivity : AppCompatActivity(){
 
                     for (document in task.result!!) {
                         val documentData = document.data
-                        val category = "카테고리입니다." // 실제 필드 이름으로 수정
+                        val category = documentData["category"] as String
                         val title = documentData["title"] as String // 실제 필드 이름으로 수정
                         val content = documentData["content"] as String // 실제 필드 이름으로 수정
                         val infoData = InfoData(category, title, content)
