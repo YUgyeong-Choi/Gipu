@@ -1,5 +1,6 @@
 package com.example.gipu_android
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,17 @@ class InfoListAdapter(private val infoList: MutableList<InfoData>):RecyclerView.
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfoViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.info_item, parent, false)
-        return InfoViewHolder(itemView)
+        return InfoViewHolder(itemView).apply{ //itemView 넘겨주기
+            itemView.setOnClickListener{
+                val position = adapterPosition
+                if(position != RecyclerView.NO_POSITION){
+                    val clickedItem = infoList[position]
+                    val intent = Intent(parent.context, InfoDetailActivity::class.java)
+                    intent.putExtra("info", clickedItem)
+                    parent.context.startActivity(intent)
+                }
+            }
+        }
     }
 
 

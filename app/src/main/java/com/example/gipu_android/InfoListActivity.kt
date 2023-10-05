@@ -28,7 +28,7 @@ class InfoListActivity : AppCompatActivity(){
             finish()
         }
 
-        //하단바 검색 클릭하면 푸드마켓 화면으로
+        //하단바 검색 클릭하면 이동
         val foodmarketBtn: ImageView = findViewById(R.id.infolist_search)
         foodmarketBtn.setOnClickListener {
             val intent = Intent(this, FoodbankListActivity::class.java)
@@ -36,6 +36,13 @@ class InfoListActivity : AppCompatActivity(){
             finish()
         }
 
+        //하단바 프로필 클릭하면 이동
+        val profileBtn : ImageView = findViewById(R.id.infolist_profile)
+        profileBtn.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         val db = FirebaseFirestore.getInstance()
         db.collection("게시물")
