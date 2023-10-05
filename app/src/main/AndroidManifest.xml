@@ -32,6 +32,7 @@
         <activity android:name=".FoodbankDetailActivity"/>
         <activity android:name=".RegionSettingActivity"/>
         <activity android:name=".InfoDetailActivity"/>
+        <activity android:name=".ProfileActivity"/>
 
     </application>
 
