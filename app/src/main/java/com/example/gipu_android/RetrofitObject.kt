@@ -15,6 +15,15 @@ object CenterInfoImpl{
     val service_ct_tab : CenterInfoInterface = retrofit.create(CenterInfoInterface::class.java)
 }
 
+object AllCenterInfoImpl{
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl(Url)
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .build()
+    //인증탭 - 메인
+    val service_ct_tab : AllCenterInfoInterface = retrofit.create(AllCenterInfoInterface::class.java)
+}
+
 object FcltyGrpInfoImpl{
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(Url)
