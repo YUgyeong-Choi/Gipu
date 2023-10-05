@@ -6,6 +6,7 @@ data class InfoData(
     val category : String,
     val title : String,
     val content : String,
+    val writer : String
 ):Serializable
 
 data class FoodBankData(

@@ -54,23 +54,18 @@ class InfoListActivity : AppCompatActivity(){
                     for (document in task.result!!) {
                         val documentData = document.data
                         val category = documentData["category"] as String
-                        val title = documentData["title"] as String // 실제 필드 이름으로 수정
-                        val content = documentData["content"] as String // 실제 필드 이름으로 수정
-                        val infoData = InfoData(category, title, content)
+                        val title = documentData["title"] as String// 실제 필드 이름으로 수정
+                        val content = documentData["content"] as String// 실제 필드 이름으로 수정
+                        val writer = documentData["writer"] as String
+                        val infoData = InfoData(category, title, content, writer)
 
                         InfoList.add(infoData)
                         //Log.d("문서", "${document.id} , ${document.data}")
-                        // 여기서 document.data를 사용하여 데이터를 처리할 수 있습니다.
                     }
                     Log.d("출력", InfoList.toString())
-                    //레이아웃의 리사이클러뷰 가지고 옴
                     val info_rv = findViewById<RecyclerView>(R.id.info_recyclerView)
-                    //리사이클러뷰는 수직으로 내려가는 형태
                     info_rv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                    //이건뭔지 모름 리사이클러뷰 사이즈 조정하는 것 같은데
                     info_rv.setHasFixedSize(true)
-                    //리사이클러뷰를 사용할 땐 리사이클러뷰 안에 들어가는 Layout-info_item을 설정해줘야하기 때문에 어댑터가 필요함
-                    // -> InfoListAdapter를 실행시키는데 InfoList를 넘겨줌
                     info_rv.adapter = InfoListAdapter(InfoList)
                 } else {
                     Log.w("오류", "Error getting documents.", task.exception)

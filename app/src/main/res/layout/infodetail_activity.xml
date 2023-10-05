@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/infodetail_back"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="20dp"
@@ -27,6 +27,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/infodetail_star"
+        android:layout_width="30dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/emptystar" />
 
     <View
         android:id="@+id/infodetailtop_divider"
@@ -94,13 +104,14 @@
                 android:id="@+id/textView5"
                 android:layout_width="180dp"
                 android:layout_height="40dp"
-                android:gravity="center"
+                android:layout_marginTop="15dp"
                 android:layout_gravity="center"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
                 android:background="@drawable/background_category"
-                android:text="채팅하기" />
+                android:gravity="center"
+                android:text="채팅하기"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 
