@@ -126,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:textSize="15dp"
-                    android:text="내가 쓴 게시물 보기" />
+                    android:text="내가 작성한 게시물 보기" />
             </LinearLayout>
 
             <LinearLayout
