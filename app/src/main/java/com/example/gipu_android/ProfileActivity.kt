@@ -24,5 +24,11 @@ class ProfileActivity: AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        binding.profileLikePost.setOnClickListener {
+            val intent = Intent(this, LikeListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

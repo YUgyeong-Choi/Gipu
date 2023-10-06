@@ -33,6 +33,8 @@
         <activity android:name=".RegionSettingActivity"/>
         <activity android:name=".InfoDetailActivity"/>
         <activity android:name=".ProfileActivity"/>
+        <activity android:name=".LikeListActivity"/>
+        <activity android:name=".LikeDetailActivity"/>
 
     </application>
 

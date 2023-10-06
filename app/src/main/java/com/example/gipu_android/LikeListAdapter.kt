@@ -1,5 +1,6 @@
 package com.example.gipu_android
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -7,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class InfoListAdapter(private var infoList: MutableList<InfoData>):RecyclerView.Adapter<InfoListAdapter.InfoViewHolder>() {
+class LikeListAdapter(private var infoList: MutableList<InfoData>): RecyclerView.Adapter<LikeListAdapter.InfoViewHolder>() {
 
-    inner class InfoViewHolder(itemView : View):RecyclerView.ViewHolder(itemView){
+    inner class InfoViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
         val info_category = itemView.findViewById<TextView>(R.id.item_category)
         val info_title = itemView.findViewById<TextView>(R.id.item_title)
         val info_content = itemView.findViewById<TextView>(R.id.item_content)
@@ -23,7 +24,8 @@ class InfoListAdapter(private var infoList: MutableList<InfoData>):RecyclerView.
                 val position = adapterPosition
                 if(position != RecyclerView.NO_POSITION){
                     val clickedItem = infoList[position]
-                    val intent = Intent(parent.context, InfoDetailActivity::class.java)
+                    (parent.context as Activity).finish()
+                    val intent = Intent(parent.context, LikeDetailActivity::class.java)
                     intent.putExtra("info", clickedItem)
                     parent.context.startActivity(intent)
                 }
@@ -45,5 +47,10 @@ class InfoListAdapter(private var infoList: MutableList<InfoData>):RecyclerView.
 
     override fun getItemCount(): Int {
         return infoList.size
+    }
+
+    fun updateData(newLikeList: MutableList<InfoData>) {
+        infoList = newLikeList
+        notifyDataSetChanged()
     }
 }
