@@ -24,11 +24,13 @@ class LikeDetailActivity: AppCompatActivity() {
         }
 
         val detailInfo = intent.getSerializableExtra("info") as InfoData
+        val heartDB_name = detailInfo.writer + "_"+  detailInfo.title
 
         // 찜 상태에 따라 이미지 변환
         InfoDetailActivity.HeartDB.init(this)
         val InfoData = InfoDetailActivity.HeartDB.getInstance()
-        if (InfoData.contains(detailInfo.writer)){
+
+        if (InfoData.contains(heartDB_name)){
             binding.infodetailStar.setImageResource(R.drawable.fullstar)
         }else{
             binding.infodetailStar.setImageResource(R.drawable.emptystar)
@@ -38,14 +40,14 @@ class LikeDetailActivity: AppCompatActivity() {
             InfoDetailActivity.HeartDB.init(this)
             val InfoData = InfoDetailActivity.HeartDB.getInstance()
 
-            if(InfoData.contains(detailInfo.writer)){
+            if(InfoData.contains(heartDB_name)){
                 val editor = InfoData.edit()
-                editor.remove(detailInfo.writer)
+                editor.remove(heartDB_name)
                 editor.apply()
                 binding.infodetailStar.setImageResource(R.drawable.emptystar)
             }else{
                 val editor = InfoData.edit()
-                val key = detailInfo.writer
+                val key = heartDB_name
                 val gson = Gson()
                 val InfoJson = gson.toJson(detailInfo)
                 editor.putString(key, InfoJson)
@@ -57,5 +59,7 @@ class LikeDetailActivity: AppCompatActivity() {
         binding.infodetailCategory.text = detailInfo.category
         binding.infodetailTitle.text = detailInfo.title
         binding.infodetailContent.text = detailInfo.content
+        binding.infodetailLocation.text = detailInfo.si +" " + detailInfo.dong
+        binding.infodetailWriter.text = detailInfo.writer
     }
 }

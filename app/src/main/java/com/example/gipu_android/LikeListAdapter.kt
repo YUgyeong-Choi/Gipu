@@ -14,6 +14,8 @@ class LikeListAdapter(private var infoList: MutableList<InfoData>): RecyclerView
         val info_category = itemView.findViewById<TextView>(R.id.item_category)
         val info_title = itemView.findViewById<TextView>(R.id.item_title)
         val info_content = itemView.findViewById<TextView>(R.id.item_content)
+        val info_si = itemView.findViewById<TextView>(R.id.item_si)
+        val info_dong = itemView.findViewById<TextView>(R.id.item_dong)
     }
 
 
@@ -42,7 +44,15 @@ class LikeListAdapter(private var infoList: MutableList<InfoData>): RecyclerView
             holder.info_category.setBackgroundResource(R.drawable.background_category)
         }
         holder.info_title.text = infoList[position].title
-        holder.info_content.text = infoList[position].content
+
+        if (infoList[position].content.length <= 25) {
+            holder.info_content.text = infoList[position].content
+        } else {
+            holder.info_content.text = infoList[position].content.take(25) + "..."
+        }
+
+        holder.info_si.text = infoList[position].si
+        holder.info_dong.text = infoList[position].dong
     }
 
     override fun getItemCount(): Int {

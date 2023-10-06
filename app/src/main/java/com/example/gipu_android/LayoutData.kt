@@ -6,6 +6,8 @@ data class InfoData(
     val category : String,
     val title : String,
     val content : String,
+    val si : String,
+    val dong : String,
     val writer : String
 ):Serializable
 

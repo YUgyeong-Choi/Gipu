@@ -51,10 +51,29 @@
                 android:id="@+id/item_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:text="내용"
                 app:layout_constraintStart_toStartOf="@+id/item_title"
                 app:layout_constraintTop_toBottomOf="@+id/item_title" />
+
+            <TextView
+                android:id="@+id/item_si"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="시"
+                app:layout_constraintStart_toStartOf="@+id/item_content"
+                app:layout_constraintTop_toBottomOf="@+id/item_content" />
+
+            <TextView
+                android:id="@+id/item_dong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="동"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/item_si"
+                app:layout_constraintTop_toTopOf="@+id/item_si" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

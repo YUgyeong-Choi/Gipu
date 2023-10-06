@@ -26,7 +26,7 @@ class LikeListActivity: AppCompatActivity() {
         }
 
         InfoDetailActivity.HeartDB.init(this)
-        val InfoDatas= InfoDetailActivity.HeartDB.getInstance() // 이 부분을 수정해야 합니다.
+        val InfoDatas= InfoDetailActivity.HeartDB.getInstance()
         val allEntries: Map<String, *> = InfoDatas.all
         val likeList = arrayListOf<InfoData>()
 

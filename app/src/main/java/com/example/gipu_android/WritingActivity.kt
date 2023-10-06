@@ -139,14 +139,20 @@ class WritingActivity: AppCompatActivity() {
                 )
                 toast.show()
             }else{
+                val si = ProfileActivity.UserDB.getInstance().getString("si","")
+                val dong = ProfileActivity.UserDB.getInstance().getString("dong","")
+                val writer = ProfileActivity.UserDB.getInstance().getString("writer","") ?: ""
+
                 val db = Firebase.firestore
                 val testData = hashMapOf(
                     "title" to title,
                     "content" to content,
-                    "category" to category
+                    "category" to category,
+                    "writer" to writer,
+                    "si" to si,
+                    "dong" to dong
                 )
-                val keyHash = getHashKey()
-                db.collection("게시물").document("아이디").set(testData)
+                db.collection("게시물").document(writer).set(testData)
                 //Log.d("해시키", keyHash.toString())
 
                 val intent = Intent(this, InfoListActivity::class.java)
@@ -156,24 +162,4 @@ class WritingActivity: AppCompatActivity() {
         }
     }
 
-    private fun getHashKey():String? {
-        var packageInfo: PackageInfo? = null
-        try {
-            packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
-        } catch (e: PackageManager.NameNotFoundException) {
-            e.printStackTrace()
-        }
-        if (packageInfo == null) Log.e("KeyHash", "KeyHash:null")
-        for (signature in packageInfo!!.signatures) {
-            try {
-                val md = MessageDigest.getInstance("SHA")
-                md.update(signature.toByteArray())
-                Log.d("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT))
-                return Base64.encodeToString(md.digest(), Base64.DEFAULT)
-            } catch (e: NoSuchAlgorithmException) {
-                Log.e("KeyHash", "Unable to get MessageDigest. signature=$signature", e)
-            }
-        }
-        return null
-    }
 }

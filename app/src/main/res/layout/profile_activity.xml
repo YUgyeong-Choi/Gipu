@@ -62,7 +62,7 @@
                     tools:layout_editor_absoluteY="10dp" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/profile_nickname"
                     android:layout_marginStart="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
                     app:layout_constraintTop_toTopOf="@+id/profile_userImage" />
 
                 <TextView
-                    android:id="@+id/profile_nickname"
+                    android:id="@+id/profile_changeInfo"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
                     android:text="정보 수정"
                     android:padding="5dp"
                     app:layout_constraintStart_toEndOf="@+id/profile_userImage"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                    app:layout_constraintTop_toBottomOf="@+id/profile_nickname" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
