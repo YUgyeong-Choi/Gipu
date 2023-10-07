@@ -121,7 +121,7 @@ class WritingActivity: AppCompatActivity() {
         binding.writingGive.setOnClickListener {
             binding.writingGive.setBackgroundResource(R.drawable.background_category)
             binding.writingGet.setBackgroundResource(R.drawable.background_gray)
-            category = "기부 주기"
+            category = "기부 하기"
         }
 
         binding.writingGet.setOnClickListener {
@@ -141,7 +141,7 @@ class WritingActivity: AppCompatActivity() {
             }else{
                 val si = ProfileActivity.UserDB.getInstance().getString("si","")
                 val dong = ProfileActivity.UserDB.getInstance().getString("dong","")
-                val writer = ProfileActivity.UserDB.getInstance().getString("writer","") ?: ""
+                val writer = ProfileActivity.UserDB.getInstance().getString("user","") ?: ""
 
                 val db = Firebase.firestore
                 val testData = hashMapOf(
@@ -152,7 +152,7 @@ class WritingActivity: AppCompatActivity() {
                     "si" to si,
                     "dong" to dong
                 )
-                db.collection("게시물").document(writer).set(testData)
+                db.collection("게시물").document(writer+"_"+title).set(testData)
                 //Log.d("해시키", keyHash.toString())
 
                 val intent = Intent(this, InfoListActivity::class.java)

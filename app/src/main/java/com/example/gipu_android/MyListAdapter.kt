@@ -2,15 +2,17 @@ package com.example.gipu_android
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
-class LikeListAdapter(private var infoList: MutableList<InfoData>): RecyclerView.Adapter<LikeListAdapter.InfoViewHolder>() {
+class MyListAdapter(private var infoList: MutableList<InfoData>): RecyclerView.Adapter<MyListAdapter.InfoViewHolder>() {
 
     inner class InfoViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
         val info_category = itemView.findViewById<TextView>(R.id.item_category)
@@ -18,7 +20,7 @@ class LikeListAdapter(private var infoList: MutableList<InfoData>): RecyclerView
         val info_content = itemView.findViewById<TextView>(R.id.item_content)
         val info_si = itemView.findViewById<TextView>(R.id.item_si)
         val info_dong = itemView.findViewById<TextView>(R.id.item_dong)
-        val star = itemView.findViewById<ImageView>(R.id.item_tag)
+        val trash = itemView.findViewById<ImageView>(R.id.item_tag)
     }
 
 
@@ -56,27 +58,50 @@ class LikeListAdapter(private var infoList: MutableList<InfoData>): RecyclerView
 
         holder.info_si.text = infoList[position].si
         holder.info_dong.text = infoList[position].dong
-        holder.star.visibility = View.VISIBLE
+        holder.trash.visibility = View.VISIBLE
+        holder.trash.setImageResource(R.drawable.trash)
 
-        holder.star.setOnClickListener {
-            val heartDB_name = infoList[position].writer + "_"+  infoList[position].title
-            InfoDetailActivity.HeartDB.init(holder.itemView.context)
-            val InfoData = InfoDetailActivity.HeartDB.getInstance()
+        holder.trash.setOnClickListener {
+            val simpleDialog = MyInfoRemoveActivity(holder.itemView.context)
+            simpleDialog.show( object : MyInfoRemoveActivity.OnDialogResultListener {
+                override fun onResult(result: Boolean) {
+                    if (result == true) {
 
-            if(InfoData.contains(heartDB_name)){
-                val editor = InfoData.edit()
-                editor.remove(heartDB_name)
-                editor.apply()
-                holder.star.setImageResource(R.drawable.emptystar)
+                        val DBname = infoList[holder.adapterPosition].writer + "_" + infoList[holder.adapterPosition].title
+                        val db = Firebase.firestore
+                        val collectionRef = db.collection("게시물")
 
-                // infoList에서 해당 항목을 찾아 제거
-                val removedItem = infoList.find { it.writer + "_" + it.title == heartDB_name }
-                if (removedItem != null) {
-                    val position = infoList.indexOf(removedItem)
-                    infoList.removeAt(position)
-                    notifyItemRemoved(position)
+                        // 해당 문서 삭제
+                        collectionRef.document(DBname)
+                            .delete()
+                            .addOnSuccessListener {
+                                // 삭제 성공 시 처리
+                                Log.d("Firestore", "Document successfully deleted!")
+                            }
+                            .addOnFailureListener { exception ->
+                                // 삭제 실패 시 처리
+                                Log.w("Firestore", "Error deleting document: ", exception)
+                            }
+
+                        InfoDetailActivity.HeartDB.init(holder.itemView.context)
+                        val InfoData = InfoDetailActivity.HeartDB.getInstance()
+
+                        if (InfoData.contains(DBname)) {
+                            val editor = InfoData.edit()
+                            editor.remove(DBname)
+                            editor.apply()
+                        }
+
+                        // infoList에서 해당 항목을 찾아 제거
+                        val removedItem = infoList.find { it.writer + "_" + it.title == DBname }
+                        if (removedItem != null) {
+                            val position = infoList.indexOf(removedItem)
+                            infoList.removeAt(holder.adapterPosition)
+                            notifyItemRemoved(holder.adapterPosition)
+                        }
+                    }
                 }
-            }
+            })
         }
     }
 

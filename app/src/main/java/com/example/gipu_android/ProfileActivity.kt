@@ -49,6 +49,12 @@ class ProfileActivity: AppCompatActivity() {
             finish()
         }
 
+        binding.profileMyPost.setOnClickListener {
+            val intent = Intent(this, MyListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
 
         UserDB.init(this)
         val InfoData = UserDB.getInstance().edit()

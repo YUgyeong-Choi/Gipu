@@ -31,7 +31,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/background_category"
-                android:padding="3dp"
+                android:padding="5dp"
                 android:text="지역"
                 android:textColor="#FFFFFF"
                 android:textSize="12sp"
@@ -113,6 +113,7 @@
                     android:background="#4682B4"
                     android:textColor="@color/white"
                     android:padding="10dp"
+                    android:textStyle="bold"
                     android:text="상세 정보 보기"/>
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -123,6 +124,7 @@
                     android:background="#4682B4"
                     android:textColor="@color/white"
                     android:padding="10dp"
+                    android:textStyle="bold"
                     android:text="선호 물품 보기"/>
             </LinearLayout>
 
