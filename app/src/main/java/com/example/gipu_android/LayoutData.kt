@@ -20,3 +20,4 @@ data class FoodBankData(
     val who : String,
     val useCount : String
 )
+

@@ -35,6 +35,13 @@ class InfoListActivity : AppCompatActivity(){
             finish()
         }
 
+        val chatBtn: ImageView = findViewById(R.id.infolist_chat)
+        chatBtn.setOnClickListener {
+            val intent = Intent(this, ChatListFragment::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         //하단바 프로필 클릭하면 이동
         val profileBtn : ImageView = findViewById(R.id.infolist_profile)
         profileBtn.setOnClickListener {

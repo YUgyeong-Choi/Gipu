@@ -13,24 +13,10 @@
         android:text="푸드뱅크"
         android:textSize="20dp"
         android:textStyle="bold"
+        android:textColor="#4682B4"
         app:layout_constraintBottom_toTopOf="@+id/foodbank_recyclerView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/foodtop_divider"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_marginBottom="2dp"
-        android:background="#4682B4"
-        app:layout_constraintBottom_toTopOf="@+id/foodbank_recyclerView" />
-
-    <View
-        android:id="@+id/foodunder_divider"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="#4682B4"
-        app:layout_constraintTop_toBottomOf="@+id/foodbank_recyclerView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/foodbank_recyclerView"
@@ -44,35 +30,46 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="#E2E2E2"/>
 
-    <ImageView
-        android:id="@+id/foodbank_document"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/foodbank_search"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/foodbank_search"
-        app:srcCompat="@drawable/documenticon" />
-
-    <ImageView
-        android:id="@+id/foodbank_search"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#4682B4"
+        android:paddingTop="8dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/foodbank_profile"
-        app:layout_constraintStart_toEndOf="@+id/foodbank_document"
-        app:layout_constraintTop_toBottomOf="@+id/foodbank_recyclerView"
-        app:srcCompat="@drawable/searcgicon" />
-
-    <ImageView
-        android:id="@+id/foodbank_profile"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/foodbank_search"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/foodbank_search"
-        app:srcCompat="@drawable/profileicon" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodbank_recyclerView">
+
+
+        <ImageView
+            android:id="@+id/foodbank_document"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/offdocument" />
+
+        <ImageView
+            android:id="@+id/foodbank_search"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/onsearch" />
+
+        <ImageView
+            android:id="@+id/foodbank_chat"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/offchat" />
+
+        <ImageView
+            android:id="@+id/foodbank_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/offprofile" />
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/region_settingbtn"

@@ -35,6 +35,8 @@
         <activity android:name=".ProfileActivity"/>
         <activity android:name=".LikeListActivity"/>
         <activity android:name=".LikeDetailActivity"/>
+        <activity android:name=".ChatRoomActivity"/>
+        <activity android:name=".ChatListFragment"/>
 
     </application>
 
