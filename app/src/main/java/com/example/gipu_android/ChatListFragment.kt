@@ -3,9 +3,11 @@ package com.example.gipu_android
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,22 +41,45 @@ class ChatListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.chatlist_activity, container, false)
+
+        val view = inflater.inflate(R.layout.chatlist_fragment, container, false)
+
+        val documentBtn: ImageView = view.findViewById(R.id.chatlist_document)
+        documentBtn.setOnClickListener {
+            val intent = Intent(requireContext(), InfoListActivity::class.java)
+            startActivity(intent)
+        }
+
+        val foodmarketBtn: ImageView = view.findViewById(R.id.chatlist_search)
+        foodmarketBtn.setOnClickListener {
+            val intent = Intent(requireContext(), FoodbankListActivity::class.java)
+            startActivity(intent)
+        }
+
+        //하단바 프로필 클릭하면 이동
+        val profileBtn : ImageView = view.findViewById(R.id.chatlist_profile)
+        profileBtn.setOnClickListener {
+            val intent = Intent(requireContext(), ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.chatlist_recyclerview)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = RecyclerViewAdapter()
+        recyclerView.adapter = RecyclerViewAdapter(requireContext())
 
         return view
     }
 
-    inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder>() {
+    inner class RecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder>() {
 
         private val chatModel = ArrayList<ChatModel>()
         private var uid : String? = null
         private val destinationUsers : ArrayList<String> = arrayListOf()
 
         init {
-            uid = "작은토끼"
+            ProfileActivity.UserDB.init(this.context)
+            val userName = ProfileActivity.UserDB.getInstance().getString("user", "")
+            uid = userName
 
             fireDatabase.child("chatrooms").orderByChild("users/$uid").equalTo(true).addListenerForSingleValueEvent(object :
                 ValueEventListener {
@@ -87,28 +112,23 @@ class ChatListFragment : Fragment() {
             for (user in chatModel[position].users.keys) {
                 if (!user.equals(uid)) {
                     destinationUid = user
+                    holder.name.text = destinationUid
                     destinationUsers.add(destinationUid)
                 }
             }
-            fireDatabase.child("users").child("$destinationUid").addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onCancelled(error: DatabaseError) {
-                }
 
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val name = snapshot.getValue()
-                    holder.title.text = name.toString()
-                }
-            })
             //메세지 내림차순 정렬 후 마지막 메세지의 키값을 가져
             val commentMap = TreeMap<String, Comment>(reverseOrder())
             commentMap.putAll(chatModel[position].comments)
             val lastMessageKey = commentMap.keys.toTypedArray()[0]
             holder.lastMessage.text = chatModel[position].comments[lastMessageKey]?.message
+            holder.title.text = chatModel[position].comments[lastMessageKey]?.roomName
 
             //채팅창 선책 시 이동
             holder.itemView.setOnClickListener {
                 val intent = Intent(context, ChatRoomActivity::class.java)
                 intent.putExtra("destinationUid", destinationUsers[position])
+                intent.putExtra("roomName", chatModel[position].comments[lastMessageKey]?.roomName)
                 context?.startActivity(intent)
             }
         }

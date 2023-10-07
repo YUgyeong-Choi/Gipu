@@ -36,6 +36,12 @@ class FoodbankListActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.foodbankChat.setOnClickListener {
+            val intent = Intent(this, ChatListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         binding.regionSettingbtn.setOnClickListener {
             val intent = Intent(this, RegionSettingActivity::class.java)
             startActivity(intent)

@@ -43,6 +43,12 @@ class ProfileActivity: AppCompatActivity() {
             finish()
         }
 
+        binding.profileChat.setOnClickListener {
+            val intent = Intent(this, ChatListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         binding.profileLikePost.setOnClickListener {
             val intent = Intent(this, LikeListActivity::class.java)
             startActivity(intent)
@@ -56,8 +62,8 @@ class ProfileActivity: AppCompatActivity() {
         }
 
 
-        UserDB.init(this)
-        val InfoData = UserDB.getInstance().edit()
+//        UserDB.init(this)
+//        val InfoData = UserDB.getInstance().edit()
 //        InfoData.clear()
 //        InfoData.apply()
 //

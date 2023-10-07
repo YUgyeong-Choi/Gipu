@@ -1,6 +1,8 @@
 package com.example.gipu_android
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -9,9 +11,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -32,6 +36,14 @@ class ChatRoomActivity :AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.chatroom_activity)
+
+        val backBtn = findViewById<ImageView>(R.id.chatroom_back)
+        backBtn.setOnClickListener {
+            val intent = Intent(this, ChatListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         val sendBtn = findViewById<Button>(R.id.chatroom_send)
         val editText = findViewById<TextView>(R.id.chatroom_input)
 
@@ -40,9 +52,13 @@ class ChatRoomActivity :AppCompatActivity() {
         val dateFormat = SimpleDateFormat("MM월dd일 hh:mm")
         val curTime = dateFormat.format(Date(time)).toString()
 
-        //destinationUid = intent.getStringExtra("destinationUid")
-        destinationUid = "바니바니"
-        uid = "작은토끼"
+        // 대상 이름
+        destinationUid = intent.getStringExtra("destinationUid")
+
+        // 유저 이름
+        ProfileActivity.UserDB.init(this)
+        val userName = ProfileActivity.UserDB.getInstance().getString("user", "")
+        uid = userName
         recyclerView = findViewById(R.id.chatroom_recyclerview)
 
         sendBtn.setOnClickListener {
@@ -51,7 +67,9 @@ class ChatRoomActivity :AppCompatActivity() {
             chatModel.users.put(uid.toString(), true)
             chatModel.users.put(destinationUid!!, true)
 
-            val comment = Comment(uid, editText.text.toString(), curTime)
+            val roomName = intent.getStringExtra("roomName")
+
+            val comment = Comment(roomName, uid, editText.text.toString(), curTime)
             if (chatRoomUid == null) {
                 sendBtn.isEnabled = false
                 fireDatabase.child("chatrooms").push().setValue(chatModel).addOnSuccessListener {
@@ -137,14 +155,20 @@ class ChatRoomActivity :AppCompatActivity() {
             holder.message.text = comments[position].message
             holder.time.text = comments[position].time
             if(comments[position].uid.equals(uid)){ // 본인 채팅
-                //holder.message.setBackgroundResource(R.drawable.rightbubble)
-                holder.name.visibility = View.INVISIBLE
+                holder.name.visibility = View.GONE
                 holder.layout_main.gravity = Gravity.RIGHT
+                var color = Color.parseColor("#4682B4")
+                holder.cardview.setCardBackgroundColor(color)
+                color = Color.parseColor("#FFFFFF")
+                holder.message.setTextColor(color)
+                color = Color.parseColor("#f1f3f5")
+                holder.time.setTextColor(color)
             }else{ // 상대방 채팅
                 holder.name.text = destinationUid
                 holder.name.visibility = View.VISIBLE
-                //holder.textView_message.setBackgroundResource(R.drawable.leftbubble)
                 holder.layout_main.gravity = Gravity.LEFT
+                var color = Color.parseColor("#dee2e6")
+                holder.cardview.setCardBackgroundColor(color)
             }
         }
 
@@ -153,6 +177,7 @@ class ChatRoomActivity :AppCompatActivity() {
             val name: TextView = view.findViewById(R.id.chatroom_name)
             val time : TextView = view.findViewById(R.id.chatroom_time)
             val layout_main: LinearLayout = view.findViewById(R.id.chatroom_main)
+            val cardview : CardView = view.findViewById(R.id.chatroom_cardview)
         }
 
         override fun getItemCount(): Int {

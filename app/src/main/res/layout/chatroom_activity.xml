@@ -7,15 +7,25 @@
     android:layout_height="match_parent">
 
 
+    <ImageView
+        android:id="@+id/chatroom_back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/chatroom_recyclerview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back" />
+
     <TextView
-        android:id="@+id/chatroom_topname"
+        android:id="@+id/chatroom_backword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/chatroom_recyclerview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="5dp"
+        android:text="나가기"
+        app:layout_constraintBottom_toBottomOf="@+id/chatroom_back"
+        app:layout_constraintStart_toEndOf="@+id/chatroom_back"
+        app:layout_constraintTop_toTopOf="@+id/chatroom_back" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatroom_recyclerview"
@@ -38,16 +48,21 @@
 
         <EditText
             android:id="@+id/chatroom_input"
-            android:layout_weight="3"
+            android:layout_weight="9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/chatroom_send"
             android:layout_weight="1"
+            android:layout_marginEnd="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="send" />
+            android:background="#639CD0"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="전송" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,63 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context=".ChatListActivity">
 
-    <TextView
-        android:id="@+id/chat_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="채팅"
-        android:textColor="#4682B4"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+    <!-- 다른 액티비티 요소들을 추가할 수 있습니다. -->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chatlist_recyclerview"
+    <fragment
+        android:id="@+id/chatListFragment"
+        android:name="com.example.gipu_android.ChatListFragment"
         android:layout_width="match_parent"
-        android:layout_height="620dp"
-        android:background="#E2E2E2" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#4682B4"
-        android:paddingTop="10dp"
-        android:orientation="horizontal">
-
-
-        <ImageView
-            android:id="@+id/foodbanklist_document"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/offdocument" />
-
-        <ImageView
-            android:id="@+id/foodbanklist_search"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/offsearch" />
-
-        <ImageView
-            android:id="@+id/foodbanklist_chat"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/onchat" />
-
-        <ImageView
-            android:id="@+id/foodbanklist_profile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/offprofile" />
-    </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

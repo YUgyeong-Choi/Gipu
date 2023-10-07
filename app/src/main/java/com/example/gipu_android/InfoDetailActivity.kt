@@ -1,6 +1,7 @@
 package com.example.gipu_android
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -41,7 +42,6 @@ class InfoDetailActivity: AppCompatActivity() {
         HeartDB.init(this)
         val InfoData = HeartDB.getInstance()
 
-
         if (InfoData.contains(heartDB_name)){
             binding.infodetailStar.setImageResource(R.drawable.fullstar)
         }else{
@@ -66,6 +66,14 @@ class InfoDetailActivity: AppCompatActivity() {
                 editor.apply()
                 binding.infodetailStar.setImageResource(R.drawable.fullstar)
             }
+        }
+
+        binding.infodetailChatbtn.setOnClickListener {
+            val intent = Intent(this, ChatRoomActivity::class.java)
+            intent.putExtra("destinationUid", detailInfo.writer)
+            intent.putExtra("roomName", detailInfo.title)
+            startActivity(intent)
+            finish()
         }
 
         binding.infodetailCategory.text = detailInfo.category

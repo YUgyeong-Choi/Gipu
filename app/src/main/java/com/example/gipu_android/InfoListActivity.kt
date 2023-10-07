@@ -37,7 +37,7 @@ class InfoListActivity : AppCompatActivity(){
 
         val chatBtn: ImageView = findViewById(R.id.infolist_chat)
         chatBtn.setOnClickListener {
-            val intent = Intent(this, ChatListFragment::class.java)
+            val intent = Intent(this, ChatListActivity::class.java)
             startActivity(intent)
             finish()
         }
