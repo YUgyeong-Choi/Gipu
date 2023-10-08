@@ -22,6 +22,7 @@ class LikeListActivity: AppCompatActivity() {
         binding.likelistBack.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
             finish()
         }
 

@@ -41,6 +41,7 @@ class ChatRoomActivity :AppCompatActivity() {
         backBtn.setOnClickListener {
             val intent = Intent(this, ChatListActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
             finish()
         }
 

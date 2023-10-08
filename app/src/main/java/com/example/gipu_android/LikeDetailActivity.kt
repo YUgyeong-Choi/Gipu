@@ -20,6 +20,7 @@ class LikeDetailActivity: AppCompatActivity() {
         binding.infodetailBack.setOnClickListener {
             val intent = Intent(this, LikeListActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
             finish()
         }
 
@@ -45,14 +46,11 @@ class LikeDetailActivity: AppCompatActivity() {
                 editor.remove(heartDB_name)
                 editor.apply()
                 binding.infodetailStar.setImageResource(R.drawable.emptystar)
-            }else{
-                val editor = InfoData.edit()
-                val key = heartDB_name
-                val gson = Gson()
-                val InfoJson = gson.toJson(detailInfo)
-                editor.putString(key, InfoJson)
-                editor.apply()
-                binding.infodetailStar.setImageResource(R.drawable.fullstar)
+
+                val intent = Intent(this, LikeListActivity::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit)
+                finish()
             }
         }
 

@@ -34,30 +34,35 @@ class ProfileActivity: AppCompatActivity() {
         binding.profileDocument.setOnClickListener {
             val intent = Intent(this, InfoListActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
         binding.profileSearch.setOnClickListener {
             val intent = Intent(this, FoodbankListActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
         binding.profileChat.setOnClickListener {
             val intent = Intent(this, ChatListActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
         binding.profileLikePost.setOnClickListener {
             val intent = Intent(this, LikeListActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
             finish()
         }
 
         binding.profileMyPost.setOnClickListener {
             val intent = Intent(this, MyListActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
             finish()
         }
 

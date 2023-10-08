@@ -48,12 +48,14 @@ class ChatListFragment : Fragment() {
         documentBtn.setOnClickListener {
             val intent = Intent(requireContext(), InfoListActivity::class.java)
             startActivity(intent)
+            requireActivity().overridePendingTransition(0, 0)
         }
 
         val foodmarketBtn: ImageView = view.findViewById(R.id.chatlist_search)
         foodmarketBtn.setOnClickListener {
             val intent = Intent(requireContext(), FoodbankListActivity::class.java)
             startActivity(intent)
+            requireActivity().overridePendingTransition(0, 0)
         }
 
         //하단바 프로필 클릭하면 이동
@@ -61,6 +63,7 @@ class ChatListFragment : Fragment() {
         profileBtn.setOnClickListener {
             val intent = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(intent)
+            requireActivity().overridePendingTransition(0, 0)
         }
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.chatlist_recyclerview)
@@ -130,6 +133,7 @@ class ChatListFragment : Fragment() {
                 intent.putExtra("destinationUid", destinationUsers[position])
                 intent.putExtra("roomName", chatModel[position].comments[lastMessageKey]?.roomName)
                 context?.startActivity(intent)
+                requireActivity().overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
             }
         }
 

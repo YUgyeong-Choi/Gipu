@@ -25,6 +25,13 @@ class RegionSettingActivity:AppCompatActivity() {
             }
         }
 
+        binding.regionBack.setOnClickListener {
+            val intent = Intent(this, FoodbankListActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit);
+            finish()
+        }
+
         binding.regionFinishbtn.setOnClickListener {
             var selectedCheckbox: CheckBox? = null
 
@@ -43,7 +50,9 @@ class RegionSettingActivity:AppCompatActivity() {
                 intent.putExtra("selectedText", selectedText)
                 Log.d("선택된 체크박스", selectedText)
             }
+
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_down_enter, R.anim.slide_down_exit);
             finish()
         }
 

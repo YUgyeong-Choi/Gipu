@@ -27,24 +27,28 @@ class FoodbankListActivity : AppCompatActivity() {
         binding.foodbankDocument.setOnClickListener {
             val intent = Intent(this, InfoListActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
         binding.foodbankProfile.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
         binding.foodbankChat.setOnClickListener {
             val intent = Intent(this, ChatListActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
         binding.regionSettingbtn.setOnClickListener {
             val intent = Intent(this, RegionSettingActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
             finish()
         }
 

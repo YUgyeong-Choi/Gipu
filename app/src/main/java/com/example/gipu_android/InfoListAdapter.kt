@@ -1,5 +1,6 @@
 package com.example.gipu_android
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -25,9 +26,11 @@ class InfoListAdapter(private var infoList: MutableList<InfoData>):RecyclerView.
                 val position = adapterPosition
                 if(position != RecyclerView.NO_POSITION){
                     val clickedItem = infoList[position]
+                    val activityContext = parent.context as? Activity
                     val intent = Intent(parent.context, InfoDetailActivity::class.java)
                     intent.putExtra("info", clickedItem)
                     parent.context.startActivity(intent)
+                    activityContext?.overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
                 }
             }
         }

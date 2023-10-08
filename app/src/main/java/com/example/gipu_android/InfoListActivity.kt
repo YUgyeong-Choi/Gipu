@@ -24,6 +24,7 @@ class InfoListActivity : AppCompatActivity(){
         writingBtn.setOnClickListener{
             val intent = Intent(this, WritingActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
             finish()
         }
 
@@ -32,6 +33,7 @@ class InfoListActivity : AppCompatActivity(){
         foodmarketBtn.setOnClickListener {
             val intent = Intent(this, FoodbankListActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -39,6 +41,7 @@ class InfoListActivity : AppCompatActivity(){
         chatBtn.setOnClickListener {
             val intent = Intent(this, ChatListActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 
@@ -47,6 +50,7 @@ class InfoListActivity : AppCompatActivity(){
         profileBtn.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(0, 0);
             finish()
         }
 

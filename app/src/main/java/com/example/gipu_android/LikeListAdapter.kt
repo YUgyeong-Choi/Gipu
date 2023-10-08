@@ -29,10 +29,12 @@ class LikeListAdapter(private var infoList: MutableList<InfoData>): RecyclerView
                 val position = adapterPosition
                 if(position != RecyclerView.NO_POSITION){
                     val clickedItem = infoList[position]
+                    val activityContext = parent.context as? Activity
                     (parent.context as Activity).finish()
                     val intent = Intent(parent.context, LikeDetailActivity::class.java)
                     intent.putExtra("info", clickedItem)
                     parent.context.startActivity(intent)
+                    activityContext?.overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
                 }
             }
         }

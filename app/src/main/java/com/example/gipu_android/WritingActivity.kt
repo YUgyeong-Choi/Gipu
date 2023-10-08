@@ -34,6 +34,7 @@ class WritingActivity: AppCompatActivity() {
         binding.writingBack.setOnClickListener {
             val intent = Intent(this, InfoListActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit);
             finish()
         }
 
@@ -157,6 +158,7 @@ class WritingActivity: AppCompatActivity() {
 
                 val intent = Intent(this, InfoListActivity::class.java)
                 startActivity(intent)
+                overridePendingTransition(R.anim.slide_down_enter, R.anim.slide_down_exit);
                 finish()
             }
         }
