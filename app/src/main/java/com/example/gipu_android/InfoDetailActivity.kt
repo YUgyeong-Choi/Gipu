@@ -5,6 +5,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import com.bumptech.glide.Glide
 import com.example.gipu_android.databinding.InfodetailActivityBinding
 import com.google.gson.Gson
 
@@ -50,15 +52,15 @@ class InfoDetailActivity: AppCompatActivity() {
 
         binding.infodetailStar.setOnClickListener{
             HeartDB.init(this)
-            val InfoData = HeartDB.getInstance()
+            val InfoDatas = HeartDB.getInstance()
 
-            if(InfoData.contains(heartDB_name)){
-                val editor = InfoData.edit()
+            if(InfoDatas.contains(heartDB_name)){
+                val editor = InfoDatas.edit()
                 editor.remove(heartDB_name)
                 editor.apply()
                 binding.infodetailStar.setImageResource(R.drawable.emptystar)
             }else{
-                val editor = InfoData.edit()
+                val editor = InfoDatas.edit()
                 val key = heartDB_name
                 val gson = Gson()
                 val InfoJson = gson.toJson(detailInfo)
@@ -74,6 +76,13 @@ class InfoDetailActivity: AppCompatActivity() {
             intent.putExtra("roomName", detailInfo.title)
             startActivity(intent)
             finish()
+        }
+
+        if (detailInfo.imageUrl != null){
+            binding.infodetailPostimage.isVisible = true
+            Glide.with(this)
+                .load(detailInfo.imageUrl)
+                .into(binding.infodetailPostimage)
         }
 
         binding.infodetailCategory.text = detailInfo.category

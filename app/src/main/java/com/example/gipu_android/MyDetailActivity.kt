@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import com.bumptech.glide.Glide
 import com.example.gipu_android.databinding.InfodetailActivityBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -67,6 +69,13 @@ class MyDetailActivity: AppCompatActivity() {
                     }
                 }
             })
+        }
+
+        if (detailInfo.imageUrl != null){
+            binding.infodetailPostimage.isVisible = true
+            Glide.with(this)
+                .load(detailInfo.imageUrl)
+                .into(binding.infodetailPostimage)
         }
 
         binding.infodetailCategory.text = detailInfo.category

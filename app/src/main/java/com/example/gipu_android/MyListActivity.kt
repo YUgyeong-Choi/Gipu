@@ -43,7 +43,8 @@ class MyListActivity:AppCompatActivity() {
                             val si = documentData["si"] as String
                             val dong = documentData["dong"] as String
                             val writer = documentData["writer"] as String
-                            val infoData = InfoData(category, title, content, si, dong, writer)
+                            val imageUrl = documentData["imageUrl"] as String
+                            val infoData = InfoData(category, title, content, si, dong, writer, imageUrl)
 
                             InfoList.add(infoData)
                             //Log.d("문서", "${document.id} , ${document.data}")

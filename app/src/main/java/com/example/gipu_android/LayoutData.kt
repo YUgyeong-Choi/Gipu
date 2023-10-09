@@ -8,7 +8,8 @@ data class InfoData(
     val content : String,
     val si : String,
     val dong : String,
-    val writer : String
+    val writer : String,
+    val imageUrl : String?
 ):Serializable
 
 data class FoodBankData(

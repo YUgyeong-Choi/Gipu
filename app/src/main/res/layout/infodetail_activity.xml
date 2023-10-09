@@ -62,10 +62,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/infodetail_postimage"
+                android:layout_width="wrap_content"
                 android:layout_height="200dp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/cameara" />
 
             <View
                 android:id="@+id/infodetailImage_divider"
