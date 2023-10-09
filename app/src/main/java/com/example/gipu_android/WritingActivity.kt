@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.example.gipu_android.databinding.InfolistActivityBinding
 import com.example.gipu_android.databinding.WritingActivityBinding
 import com.google.firebase.firestore.FirebaseFirestore
@@ -18,10 +19,29 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import android.Manifest
 
 class WritingActivity: AppCompatActivity() {
     private val binding by lazy{
         WritingActivityBinding.inflate(layoutInflater)
+    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            1 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 권한이 허용됨
+                    // 권한이 허용되었을 때 실행할 작업을 여기에 추가합니다.
+                } else {
+                    // 권한이 거부됨
+                    // 권한이 거부되었을 때 실행할 작업을 여기에 추가합니다.
+                }
+            }
+        }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,26 +116,16 @@ class WritingActivity: AppCompatActivity() {
         }
 
 
-        binding.camera.setOnClickListener {
-            var popupMenu = PopupMenu(applicationContext, it)
 
-            menuInflater.inflate(R.menu.camera_menu, popupMenu.menu)
-            popupMenu.show()
-            popupMenu.setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.test1 -> {
-                        Toast.makeText(applicationContext, "사진보관함", Toast.LENGTH_SHORT).show()
-                        return@setOnMenuItemClickListener true
-                    }
-                    R.id.test2 -> {
-                        Toast.makeText(applicationContext, "촬영", Toast.LENGTH_SHORT).show()
-                        return@setOnMenuItemClickListener true
-                    }else ->{
-                        return@setOnMenuItemClickListener false
-                    }
+                binding.camera.setOnClickListener {
+                    // 권한 요청
+                    ActivityCompat.requestPermissions(
+                        this@WritingActivity,
+                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                        1
+                    )
                 }
-            }
-        }
+
 
         var category = "null"
 
