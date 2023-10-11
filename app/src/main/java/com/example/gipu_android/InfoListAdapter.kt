@@ -50,7 +50,7 @@ class InfoListAdapter(private var infoList: MutableList<InfoData>):RecyclerView.
         if (infoList[position].content.length <= 25) {
             holder.info_content.text = infoList[position].content
         } else {
-            holder.info_content.text = infoList[position].content.take(25) + "..."
+            holder.info_content.text = infoList[position].content.take(28) + ".."
         }
 
         holder.info_si.text = infoList[position].si

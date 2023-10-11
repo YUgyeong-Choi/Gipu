@@ -107,7 +107,7 @@ class InfoListActivity : AppCompatActivity(){
                         val si = documentData["si"] as String
                         val dong = documentData["dong"] as String
                         val writer = documentData["writer"] as String
-                        val imageUrl = documentData["imageUrl"] as String
+                        val imageUrl = documentData["imageUrl"] as String?
                         val infoData = InfoData(category, title, content, si, dong, writer, imageUrl)
 
                         InfoList.add(infoData)
@@ -178,7 +178,7 @@ class InfoListActivity : AppCompatActivity(){
                             val si = documentData["si"] as String
                             val dong = documentData["dong"] as String
                             val writer = documentData["writer"] as String
-                            val imageUrl = documentData["imageUrl"] as? String
+                            val imageUrl = documentData["imageUrl"] as? String?
                             val infoData = InfoData(category, title, content, si, dong, writer, imageUrl)
 
                             InfoList.add(infoData)

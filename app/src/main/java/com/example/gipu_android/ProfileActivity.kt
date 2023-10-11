@@ -66,15 +66,15 @@ class ProfileActivity: AppCompatActivity() {
             finish()
         }
 
-//
+
 //        UserDB.init(this)
-//        val InfoData = UserDB.getInstance().edit()ㅎ
+//        val InfoData = UserDB.getInstance().edit()
 //        InfoData.clear()
 //        InfoData.apply()
 //
-//        InfoData.putString("user", "큰호랑이")
+//        InfoData.putString("user", "개나리")
 //        InfoData.putString("si", "진주시")
-//        InfoData.putString("dong", "가좌동")
+//        InfoData.putString("dong", "초전동")
 //        InfoData.apply()
 
         UserDB.init(this)

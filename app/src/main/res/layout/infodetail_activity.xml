@@ -71,7 +71,7 @@
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/image_border"
                 android:padding="2dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:srcCompat="@drawable/cameara" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -132,7 +132,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:minHeight="300dp"
+                android:minHeight="150dp"
                 android:text="내용"
                 android:textSize="15dp" />
 
