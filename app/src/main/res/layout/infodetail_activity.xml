@@ -64,17 +64,15 @@
 
             <ImageView
                 android:id="@+id/infodetail_postimage"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:visibility="gone"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/image_border"
+                android:padding="2dp"
+                android:visibility="visible"
                 app:srcCompat="@drawable/cameara" />
-
-            <View
-                android:id="@+id/infodetailImage_divider"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:background="#4682B4" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
