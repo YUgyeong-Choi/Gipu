@@ -13,6 +13,7 @@ import com.google.firebase.ktx.Firebase
 import android.Manifest
 import android.app.Activity
 import android.net.Uri
+import android.os.Handler
 import android.util.Log
 import com.google.firebase.storage.FirebaseStorage
 
@@ -116,7 +117,7 @@ class WritingActivity: AppCompatActivity() {
         var category = "null"
 
         binding.writingGive.setOnClickListener {
-            binding.writingGive.setBackgroundResource(R.drawable.background_category)
+            binding.writingGive.setBackgroundResource(R.drawable.background_give)
             binding.writingGet.setBackgroundResource(R.drawable.background_gray)
             category = "기부 하기"
         }
@@ -180,10 +181,13 @@ class WritingActivity: AppCompatActivity() {
                 }
 
 
-                val intent = Intent(this, InfoListActivity::class.java)
-                startActivity(intent)
-                overridePendingTransition(R.anim.slide_down_enter, R.anim.slide_down_exit);
-                finish()
+                val handler = Handler()
+                handler.postDelayed({
+                    val intent = Intent(this, InfoListActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.slide_down_enter, R.anim.slide_down_exit)
+                    finish()
+                }, 2000)
             }
         }
     }

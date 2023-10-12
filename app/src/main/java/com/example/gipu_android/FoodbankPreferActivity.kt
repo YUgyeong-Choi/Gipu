@@ -35,7 +35,7 @@ class FoodbankPreferActivity(val getData : FoodBankData, private val context: Co
         val stringBuilder = StringBuilder()
 
         for ((key, value) in preferdict) {
-            stringBuilder.append("물품 : " + preferData.data[key]+"\t\t"+ "보유 수량: " + value+"\n")
+            stringBuilder.append("물품 : ${preferData.data[key]}\t\t보유 수량: $value\n")
         }
 
         return stringBuilder.toString()

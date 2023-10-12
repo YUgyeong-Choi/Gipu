@@ -21,6 +21,7 @@ class MyListAdapter(private var infoList: MutableList<InfoData>): RecyclerView.A
         val info_si = itemView.findViewById<TextView>(R.id.item_si)
         val info_dong = itemView.findViewById<TextView>(R.id.item_dong)
         val trash = itemView.findViewById<ImageView>(R.id.item_tag)
+        val chatbtn = itemView.findViewById<ImageView>(R.id.infodetail_chatbtn )
     }
 
 
@@ -62,6 +63,7 @@ class MyListAdapter(private var infoList: MutableList<InfoData>): RecyclerView.A
         holder.info_dong.text = infoList[position].dong
         holder.trash.visibility = View.VISIBLE
         holder.trash.setImageResource(R.drawable.trash)
+        holder.chatbtn.visibility = View.GONE
 
         holder.trash.setOnClickListener {
             val simpleDialog = MyInfoRemoveActivity(holder.itemView.context)
