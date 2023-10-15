@@ -7,19 +7,18 @@ import android.text.Editable
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.example.gipu_android.databinding.WritingActivityBinding
+import com.example.gipu_android.databinding.InfowritingActivityBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import android.Manifest
 import android.app.Activity
 import android.net.Uri
 import android.os.Handler
-import android.util.Log
 import com.google.firebase.storage.FirebaseStorage
 
-class WritingActivity: AppCompatActivity() {
+class InfoWritingActivity: AppCompatActivity() {
     private val binding by lazy{
-        WritingActivityBinding.inflate(layoutInflater)
+        InfowritingActivityBinding.inflate(layoutInflater)
     }
 
     val IMAGE_PICK=1111
@@ -51,7 +50,7 @@ class WritingActivity: AppCompatActivity() {
 
                 override fun onTextChanged(pos: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     val toast = Toast.makeText(
-                        this@WritingActivity,
+                        this@InfoWritingActivity,
                         "최대 18자까지 입력 가능합니다.",
                         Toast.LENGTH_SHORT
                     )
@@ -79,7 +78,7 @@ class WritingActivity: AppCompatActivity() {
 
                 override fun onTextChanged(pos: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     val toast = Toast.makeText(
-                        this@WritingActivity,
+                        this@InfoWritingActivity,
                         "최대 1000자까지 입력 가능합니다.",
                         Toast.LENGTH_SHORT
                     )
@@ -101,14 +100,14 @@ class WritingActivity: AppCompatActivity() {
 
         binding.camera.setOnClickListener {
             // 권한 요청
-            ActivityCompat.requestPermissions(this@WritingActivity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+            ActivityCompat.requestPermissions(this@InfoWritingActivity, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
 
             if(binding.writingContent.text.isNotBlank() && binding.writingContent.text.isNotBlank()){
                 var intent = Intent(Intent.ACTION_PICK)
                 intent.type="image/*"
                 startActivityForResult(intent, IMAGE_PICK)
             }else{
-                val toast = Toast.makeText(this@WritingActivity, "제목과 본문을 작성해주세요", Toast.LENGTH_SHORT)
+                val toast = Toast.makeText(this@InfoWritingActivity, "제목과 본문을 작성해주세요", Toast.LENGTH_SHORT)
                 toast.show()
             }
         }
@@ -130,54 +129,18 @@ class WritingActivity: AppCompatActivity() {
 
         binding.writingFinish.setOnClickListener {
             if(category == "null"){
-                val toast = Toast.makeText(this@WritingActivity, "기부 종류를 설정해주세요", Toast.LENGTH_SHORT)
+                val toast = Toast.makeText(this@InfoWritingActivity, "기부 종류를 설정해주세요", Toast.LENGTH_SHORT)
                 toast.show()
             }else{
-                val si = ProfileActivity.UserDB.getInstance().getString("si","")
-                val dong = ProfileActivity.UserDB.getInstance().getString("dong","")
+                val si = ProfileActivity.UserDB.getInstance().getString("si","")?: ""
+                val dong = ProfileActivity.UserDB.getInstance().getString("dong","")?: ""
                 val writer = ProfileActivity.UserDB.getInstance().getString("user","") ?: ""
 
 
                 if (selectImage != null) {
-                    ProfileActivity.UserDB.init(this)
-                    val userName = ProfileActivity.UserDB.getInstance().getString("user", "")
-
-                    val storage = FirebaseStorage.getInstance()
-                    val fileName = userName + "_" + binding.writingTitle.text
-                    storage.getReference().child("PostImage").child(fileName)
-                        .putFile(selectImage!!)
-                        .addOnSuccessListener { taskSnapshot ->
-                            // 업로드 정보를 담는다
-                            taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener { imageUrl ->
-                                firebaseUrl = imageUrl.toString()
-
-
-                                val db = Firebase.firestore
-                                val testData = hashMapOf(
-                                    "imageUrl" to firebaseUrl,
-                                    "title" to title,
-                                    "content" to content,
-                                    "category" to category,
-                                    "writer" to writer,
-                                    "si" to si,
-                                    "dong" to dong
-                                )
-                                db.collection("게시물").document(writer+"_"+title).set(testData)
-                                //Log.d("해시키", keyHash.toString())
-                            }
-                        }
+                    includeImage(si,dong,writer,category)
                 }else{
-                    val db = Firebase.firestore
-                    val testData = hashMapOf(
-                        "title" to title,
-                        "content" to content,
-                        "category" to category,
-                        "writer" to writer,
-                        "si" to si,
-                        "dong" to dong
-                    )
-                    db.collection("게시물").document(writer+"_"+title).set(testData)
-                    //Log.d("해시키", keyHash.toString())
+                    excludeImage(si,dong,writer,category)
                 }
 
 
@@ -196,9 +159,53 @@ class WritingActivity: AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode==IMAGE_PICK &&resultCode== Activity.RESULT_OK){
             selectImage=data?.data
-            val toast = Toast.makeText(this@WritingActivity, "이미지를 저장했습니다", Toast.LENGTH_SHORT)
+            val toast = Toast.makeText(this@InfoWritingActivity, "이미지를 저장했습니다", Toast.LENGTH_SHORT)
             toast.show()
         }
+    }
+
+    private fun includeImage(si:String, dong:String, writer:String, category:String){
+        ProfileActivity.UserDB.init(this)
+        val userName = ProfileActivity.UserDB.getInstance().getString("user", "")
+
+        val storage = FirebaseStorage.getInstance()
+        val fileName = userName + "_" + binding.writingTitle.text
+        storage.getReference().child("PostImage").child(fileName)
+            .putFile(selectImage!!)
+            .addOnSuccessListener { taskSnapshot ->
+                // 업로드 정보를 담는다
+                taskSnapshot.metadata?.reference?.downloadUrl?.addOnSuccessListener { imageUrl ->
+                    firebaseUrl = imageUrl.toString()
+
+
+                    val db = Firebase.firestore
+                    val testData = hashMapOf(
+                        "imageUrl" to firebaseUrl,
+                        "title" to title,
+                        "content" to content,
+                        "category" to category,
+                        "writer" to writer,
+                        "si" to si,
+                        "dong" to dong
+                    )
+                    db.collection("게시물").document(writer+"_"+title).set(testData)
+                    //Log.d("해시키", keyHash.toString())
+                }
+            }
+    }
+
+    private fun excludeImage(si:String, dong:String, writer:String, category:String){
+        val db = Firebase.firestore
+        val testData = hashMapOf(
+            "title" to title,
+            "content" to content,
+            "category" to category,
+            "writer" to writer,
+            "si" to si,
+            "dong" to dong
+        )
+        db.collection("게시물").document(writer+"_"+title).set(testData)
+        //Log.d("해시키", keyHash.toString())
     }
 
 }

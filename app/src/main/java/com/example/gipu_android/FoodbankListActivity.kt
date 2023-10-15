@@ -1,17 +1,12 @@
 package com.example.gipu_android
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.provider.ContactsContract.Profile
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gipu_android.databinding.FoodbanklistActivityBinding
-import com.example.gipu_android.databinding.InfolistActivityBinding
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,7 +41,7 @@ class FoodbankListActivity : AppCompatActivity() {
         }
 
         binding.regionSettingbtn.setOnClickListener {
-            val intent = Intent(this, RegionSettingActivity::class.java)
+            val intent = Intent(this, FoodbankRegionSettingActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit)
             finish()

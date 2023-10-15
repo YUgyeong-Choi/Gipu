@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
-import com.example.gipu_android.databinding.RegionsettingActivityBinding
+import com.example.gipu_android.databinding.FoodbankregionsettingActivityBinding
 
-class RegionSettingActivity:AppCompatActivity() {
+class FoodbankRegionSettingActivity:AppCompatActivity() {
     private val binding by lazy{
-        RegionsettingActivityBinding.inflate(layoutInflater)
+        FoodbankregionsettingActivityBinding.inflate(layoutInflater)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

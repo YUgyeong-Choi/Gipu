@@ -22,7 +22,7 @@ class InfoListActivity : AppCompatActivity(){
         //글 작성 클릭하면 해당 화면으로
         val writingBtn: ImageView = findViewById(R.id.info_writing)
         writingBtn.setOnClickListener{
-            val intent = Intent(this, WritingActivity::class.java)
+            val intent = Intent(this, InfoWritingActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
             finish()

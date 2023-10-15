@@ -29,10 +29,10 @@
         </activity>
 
         <activity android:name=".InfoListActivity"/>
-        <activity android:name=".WritingActivity"/>
+        <activity android:name=".InfoWritingActivity"/>
         <activity android:name=".FoodbankListActivity"/>
         <activity android:name=".FoodbankDetailActivity"/>
-        <activity android:name=".RegionSettingActivity"/>
+        <activity android:name=".FoodbankRegionSettingActivity"/>
         <activity android:name=".InfoDetailActivity"/>
         <activity android:name=".ProfileActivity"/>
         <activity android:name=".LikeListActivity"/>

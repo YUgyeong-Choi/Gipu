@@ -167,8 +167,10 @@ class ChatRoomActivity :AppCompatActivity() {
             }else{ // 상대방 채팅
                 holder.name.text = destinationUid
                 holder.name.visibility = View.VISIBLE
+                var color = Color.parseColor("#464646")
+                holder.message.setTextColor(color)
                 holder.layout_main.gravity = Gravity.LEFT
-                var color = Color.parseColor("#dee2e6")
+                color = Color.parseColor("#dee2e6")
                 holder.cardview.setCardBackgroundColor(color)
             }
         }

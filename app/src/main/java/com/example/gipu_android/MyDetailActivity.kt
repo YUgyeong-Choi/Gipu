@@ -3,6 +3,7 @@ package com.example.gipu_android
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
@@ -21,6 +22,7 @@ class MyDetailActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         binding.infodetailStar.setImageResource(R.drawable.trash)
+        binding.infodetailChatbtn.visibility= View.GONE
 
         binding.infodetailBack.setOnClickListener {
             val intent = Intent(this, MyListActivity::class.java)
