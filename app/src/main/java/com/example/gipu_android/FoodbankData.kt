@@ -5,6 +5,11 @@ data class CenterNameData(val data: Map<String, String>)
 data class OrganizationData(val data: Map<String, String>)
 data class FcltyGrpData(val data: Map<String, String>)
 data class PreferData(val data: Map<String, String>)
+data class CenterLocationData(val data: Map<String, Location>)
+data class Location(
+    val lat: Double,
+    val lng: Double
+)
 
 val regionData = RegionData(
     mapOf(
@@ -42,7 +47,6 @@ val centerNameData = CenterNameData(
         "S19901" to "밀양시푸드뱅크",
         "S20001" to "거제시푸드뱅크",
         "S20101" to "양산시푸드뱅크",
-        "S20201" to "의령군푸드뱅크",
         "S20301" to "함안군푸드뱅크",
         "S20401" to "창녕군푸드뱅크",
         "S20501" to "고성군푸드뱅크",
@@ -122,5 +126,36 @@ val preferData = PreferData(
         "15" to "샴푸",
         "16" to "치약",
         "17" to "비누"
+    )
+)
+
+val centerMapData = CenterLocationData(
+    mapOf(
+        "S19201" to Location(35.185014, 128.835393),
+        "S19301" to Location(35.243156, 128.499833),
+        "S19401" to Location(35.192293,128.063937),
+        "S19501" to Location(35.133604, 128.710303),
+        "S19601" to Location(34.857379, 128.4322419),
+        "S19701" to Location(34.933301, 128.082122),
+        "S19801" to Location(35.228670, 128.886532),
+        "S19901" to Location(35.483776, 128.758979),
+        "S20001" to Location(34.882310, 128.622923),
+        "S20101" to Location(35.332370, 129.010992),
+        "S20301" to Location(35.272581, 128.406559),
+        "S20401" to Location(35.537572, 128.490009),
+        "S20501" to Location(34.986296, 128.332296),
+        "S20601" to Location(34.842158, 127.878452),
+        "S20701" to Location(35.072155, 127.745200),
+        "S20801" to Location(35.4128764,127.8739705),
+        "S20901" to Location(35.520824,127.7789918),
+        "S21101" to Location(35.5638992,128.1579441),
+        "S26101" to Location(35.2553122,128.6407065),
+        "S39101" to Location(35.2278843,128.8733746),
+        "S39801" to Location(34.858796, 128.431727),
+        "S39901" to Location(35.192303,128.0638991),
+        "S41601" to Location(35.2271204,128.6870389),
+        "S49201" to Location(35.689034,127.8697796),
+        "S63701" to Location(35.4128764,127.8739705),
+        "S66701" to Location(35.234210, 128.849961)
     )
 )

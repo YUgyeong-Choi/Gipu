@@ -1,10 +1,13 @@
 package com.example.gipu_android
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class FoodbankListAdapter(val FoodbankList: ArrayList<FoodBankData>): RecyclerView.Adapter<FoodbankListAdapter.FoodbankViewHolder>()  {
@@ -16,6 +19,7 @@ class FoodbankListAdapter(val FoodbankList: ArrayList<FoodBankData>): RecyclerVi
         val detail_location = itemView.findViewById<TextView>(R.id.center_detail_location)
         val centerDetailBtn = itemView.findViewById<Button>(R.id.center_detailInfo)
         val centerWishProductBtn = itemView.findViewById<Button>(R.id.center_wishproduct)
+        val centerMapBtn = itemView.findViewById<Button>(R.id.center_map)
 
         init {
             centerDetailBtn.setOnClickListener {
@@ -27,6 +31,12 @@ class FoodbankListAdapter(val FoodbankList: ArrayList<FoodBankData>): RecyclerVi
                 val pushData = FoodbankList[adapterPosition]
                 val simpleDialog = FoodbankPreferActivity(pushData, itemView.context)
                 simpleDialog.show()
+            }
+            centerMapBtn.setOnClickListener{
+                val intent = Intent(itemView.context, FoodbankMapActivity::class.java)
+                intent.putExtra("centerId", FoodbankList[adapterPosition].name)
+                itemView.context.startActivity(intent) // 여기서 수정
+                (itemView.context as Activity).overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
             }
         }
     }

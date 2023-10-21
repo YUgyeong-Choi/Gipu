@@ -109,7 +109,6 @@
                     android:id="@+id/center_detailInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
                     android:background="#639CD0"
                     android:textColor="@color/white"
                     android:padding="10dp"
@@ -126,6 +125,17 @@
                     android:padding="10dp"
                     android:textStyle="bold"
                     android:text="선호 물품 보기"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/center_map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:background="#639CD0"
+                    android:textColor="@color/white"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:text="센터 위치 보기"/>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

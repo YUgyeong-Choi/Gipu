@@ -17,6 +17,13 @@ dependencyResolutionManagement {
         mavenCentral()
         maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
     }
+    repositories {
+        google()
+        mavenCentral()
+        maven{
+            url 'https://naver.jfrog.io/artifactory/maven/'
+        }
+    }
 }
 rootProject.name = "Gipu-Android"
 include ':app'
