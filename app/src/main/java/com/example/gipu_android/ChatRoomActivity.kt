@@ -62,6 +62,8 @@ class ChatRoomActivity :AppCompatActivity() {
         uid = userName
         recyclerView = findViewById(R.id.chatroom_recyclerview)
 
+        checkChatRoom(sendBtn)
+
         sendBtn.setOnClickListener {
             Log.d("클릭 시 dest", "$destinationUid")
             val chatModel = ChatModel()
@@ -79,8 +81,7 @@ class ChatRoomActivity :AppCompatActivity() {
                     //메세지 보내기
                     Handler().postDelayed({
                         Log.d("채팅방 이름", chatRoomUid.toString())
-                        fireDatabase.child("chatrooms").child(chatRoomUid.toString())
-                            .child("comments").push().setValue(comment)
+                        fireDatabase.child("chatrooms").child(chatRoomUid.toString()).child("comments").push().setValue(comment)
                         editText.text = null
                     }, 1000L)
                     Log.d("chatUidNull dest", "$destinationUid")
@@ -92,7 +93,6 @@ class ChatRoomActivity :AppCompatActivity() {
                 Log.d("chatUidNotNull dest", "$destinationUid")
             }
         }
-        checkChatRoom(sendBtn)
     }
 
     private fun checkChatRoom(sendBtn : View) {
