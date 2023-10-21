@@ -18,7 +18,7 @@ class FoodbankMapActivity:AppCompatActivity(), OnMapReadyCallback {
         FoodbankMapBinding.inflate(layoutInflater)
     }
 
-    lateinit var centerId: String
+    private lateinit var centerId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -26,9 +26,9 @@ class FoodbankMapActivity:AppCompatActivity(), OnMapReadyCallback {
         binding.foodbankMapback.setOnClickListener {
             finish()
         }
-        binding.foodbankMapname.text = centerNameData.data[centerId]
 
         centerId = intent.getStringExtra("centerId")?: ""
+        binding.foodbankMapname.text = centerNameData.data[centerId]
 
         Log.d("센터이름", centerId)
 

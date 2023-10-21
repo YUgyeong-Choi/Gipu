@@ -35,9 +35,9 @@ class UserInfoActivity:AppCompatActivity() {
                 val InfoData = ProfileActivity.UserDB.getInstance().edit()
 
                 InfoData.putString("userImage", imageUrl)
-                InfoData.putString("user", binding.userinfoNickname.text.toString())
-                InfoData.putString("si", binding.userinfoSi.text.toString())
-                InfoData.putString("dong", binding.userinfoDong.text.toString())
+                InfoData.putString("user", binding.userinfoNickname.text.toString().trim())
+                InfoData.putString("si", binding.userinfoSi.text.toString().trim())
+                InfoData.putString("dong", binding.userinfoDong.text.toString().trim())
                 InfoData.apply()
 
                 val intent = Intent(this, StartActivity::class.java)
