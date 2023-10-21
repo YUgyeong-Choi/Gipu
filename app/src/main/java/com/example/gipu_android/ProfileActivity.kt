@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.gipu_android.databinding.ProfileActivityBinding
+import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.user.UserApiClient
 
 class ProfileActivity: AppCompatActivity() {
@@ -35,6 +36,7 @@ class ProfileActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        KakaoSdk.init(this, KakaoKey)
 
         binding.profileDocument.setOnClickListener {
             val intent = Intent(this, InfoListActivity::class.java)
@@ -84,6 +86,9 @@ class ProfileActivity: AppCompatActivity() {
             val InfoData = UserDB.getInstance().edit()
             InfoData.clear()
             InfoData.apply()
+            val intent = Intent(this, StartActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
     private fun kakaoUnlink() {
