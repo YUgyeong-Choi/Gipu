@@ -59,7 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textSize="18dp"
+                    android:textSize="20dp"
                     android:text="닉네임"
                     android:padding="5dp"
                     app:layout_constraintStart_toEndOf="@+id/profile_userImage"
@@ -68,7 +68,7 @@
                 <TextView
                     android:id="@+id/profile_changeInfo"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="7dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="정보 수정"
@@ -172,6 +172,16 @@
                     android:padding="5dp"
                     android:textSize="15dp"
                     android:text="서비스 이용 약관" />
+
+                <TextView
+                    android:id="@+id/profile_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:padding="5dp"
+                    android:textSize="15dp"
+                    android:text="로그아웃" />
             </LinearLayout>
 
         </LinearLayout>

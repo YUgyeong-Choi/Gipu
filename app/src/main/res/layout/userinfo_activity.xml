@@ -5,74 +5,128 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/userinfo_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="wrap_content"
+        android:text="유저 정보 기입"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/userinfo_title"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/userinfo_title">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="유저 정보 기입"
-            android:textStyle="bold"
-            android:textSize="30dp"/>
+            android:orientation="vertical"
+            android:padding="10dp">
 
-        <TextView
-            android:id="@+id/userinfo_profiletitle"
-            android:textStyle="bold"
-            android:textSize="25dp"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="프로필" />
+            <TextView
+                android:id="@+id/userinfo_profiletitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="프로필"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/userinfo_profileImage"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            app:srcCompat="@drawable/profileicon" />
+            <ImageView
+                android:id="@+id/userinfo_profileImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/profileicon" />
 
-        <TextView
-            android:id="@+id/userinfo_nicknametitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="25dp"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="닉네임" />
+            <TextView
+                android:id="@+id/userinfo_nicknametitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="닉네임"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/userinfo_nickname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="7dp"
-            android:ems="8"
-            android:gravity="center"
-            android:inputType="text"
-            android:singleLine="true"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/userinfo_textdesign"
-            android:hint="이름을 입력해주세요" />
+            <EditText
+                android:id="@+id/userinfo_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/userinfo_textdesign"
+                android:ems="8"
+                android:gravity="center"
+                android:hint="닉네임을 입력해주세요"
+                android:inputType="text"
+                android:padding="7dp"
+                android:singleLine="true" />
 
-        <TextView
-            android:id="@+id/userinfo_next"
-            android:layout_marginTop="150dp"
-            android:textStyle="bold"
-            android:textSize="30dp"
-            android:padding="5dp"
-            android:textColor="@color/white"
-            android:background="#4682B4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="다음" />
+            <TextView
+                android:id="@+id/userinfo_sititle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="거주 시 (군)"
+                android:textSize="22dp"
+                android:textStyle="bold" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/userinfo_si"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/userinfo_textdesign"
+                android:ems="8"
+                android:gravity="center"
+                android:hint="ex) 창원시 의창구, 진주시, 함안군"
+                android:inputType="text"
+                android:padding="7dp"
+                android:singleLine="true"
+                />
+
+            <TextView
+                android:id="@+id/userinfo_dongtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="거주 동 (면)"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/userinfo_dong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/userinfo_textdesign"
+                android:ems="8"
+                android:gravity="center"
+                android:hint="ex) 의창동, 대산면"
+                android:inputType="text"
+                android:padding="7dp"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/userinfo_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:background="#4682B4"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="다음"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

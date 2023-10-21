@@ -18,14 +18,28 @@ class StartActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.start_activity)
 
-        FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(this)
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish() //이전 액티비티 종료
-        }, 3000)
+        ProfileActivity.UserDB.init(this)
+//        val InfoData = ProfileActivity.UserDB.getInstance().edit()
+//        InfoData.clear()
+//        InfoData.apply()
 
+        if (ProfileActivity.UserDB.isLoggedIn()) {
+            // 로그인 상태이면 Infolistactivity로 이동
+            Handler(Looper.getMainLooper()).postDelayed({
+                val intent = Intent(this, InfoListActivity::class.java)
+                startActivity(intent)
+                finish() //이전 액티비티 종료
+            }, 3000)
+        } else {
+            // 로그인 상태가 아니면 LoginActivity로 이동
+            Handler(Looper.getMainLooper()).postDelayed({
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish() //이전 액티비티 종료
+            }, 3000)
+        }
         //getHashKey()
     }
 
